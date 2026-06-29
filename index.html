@@ -3,97 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>紺碧の庵 | 職人ポートフォリオ</title>
+    
+    <title>★ここにホームページ名を入力★</title>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="hero">
         <div class="hero-content">
-            <p class="hero-sub">日本のモノツクリと、伝えるクリエイティブ。</p>
-            <h1 class="hero-title">紺碧の庵</h1>
-            <p class="hero-desc">将来、地域の名産品・伝統工芸品を扱う自社EC付きのセレクトショップを開くため、現場の運営とクリエイティブ（販促チラシ・Web・動画）を越境して学ぶ修行の場。</p>
+            <p class="hero-sub">★ここに短いキャッチコピー（例：日本のモノツクリと、伝えるクリエイティブ。）★</p>
+            
+            <h1 class="hero-title" id="typewriter">★ここにメインタイトル（例：紺碧の庵）★</h1>
+            
+            <p class="hero-desc">
+                ★ここに、このサイトがどういう場所なのか、将来の夢や今の目的を自由に書いてください★
+            </p>
         </div>
     </header>
 
     <main class="container">
-        <section class="profile-section">
-            <h2 class="section-title">職人紹介</h2>
+        
+        <section class="profile-section fade-in">
+            <h2 class="section-title"><span>★見出し（例：職人紹介、自己紹介、庵主についてなど）★</span></h2>
+            
             <div class="profile-grid">
                 <div class="profile-text">
-                    <p>コンビニでの5年間の店舗運営・接客経験を原点に、スポーツストアや施設管理の現場で「仕入れ・運営・ホスピタリティ」を磨く。現在は、自社の商品や地域の魅力を120%伝えるためのクリエイティブスキル（Adobe CC / Webコーディング）を習得中。</p>
+                    <p>★ここにあなたのこれまでの経歴や、今何を学んでいるのか、将来どうしたいのかなどの自己PRを自由に書いてください★</p>
                 </div>
+                
                 <div class="skills-box">
-                    <h3>扱う道具（スキル）</h3>
+                    <h3>★スキルの見出し（例：扱う道具、技術一覧など）★</h3>
+                    
                     <ul class="skills-list">
-                        <li><strong>Illustrator</strong>：店舗用チラシ・POP制作</li>
-                        <li><strong>Photoshop</strong>：WEBバナー・YouTubeサムネイル制作</li>
-                        <li><strong>Premiere Pro</strong>：PR動画・ショート動画編集</li>
-                        <li><strong>HTML / CSS</strong>：自社サイト・ECサイト構築</li>
+                        <li>
+                            <span>Illustrator</span>
+                            ★ここに何ができるか（例：店舗用チラシ・POP制作）★
+                        </li>
+                        <li>
+                            <span>Photoshop</span>
+                            ★ここに何ができるか（例：WEBバナー・YouTubeサムネイル制作）★
+                        </li>
+                        <li>
+                            <span>Premiere Pro</span>
+                            ★ここに何ができるか（例：PR動画・ショート動画編集）★
+                        </li>
+                        <li>
+                            <span>HTML / CSS</span>
+                            ★ここに何ができるか（例：自社サイト・ECサイト構築）★
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section class="portfolio-section">
-            <h2 class="section-title">お品書き（作品集）</h2>
-            
-            <div class="gallery-grid">
-                <div class="work-item">
-                    <div class="thumbnail-wrapper">
-                        <img src="images/sample1.jpg" alt="販促チラシ">
-                    </div>
-                    <div class="work-info">
-                        <span class="category-tag">チラシ・POP</span>
-                        <h3>〇〇施設 イベント告知チラシ</h3>
-                        <p class="tool-text">使用ツール: Illustrator</p>
-                    </div>
-                </div>
+        <section class="portfolio-section fade-in">
+            <h2 class="section-title"><span>★作品集の見出し（例：お品書き、制作実績、作品集など）★</span></h2>
 
-                <div class="work-item">
-                    <div class="thumbnail-wrapper">
-                        <img src="images/sample2.jpg" alt="YouTubeサムネイル">
-                    </div>
-                    <div class="work-info">
-                        <span class="category-tag">サムネイル</span>
-                        <h3>動画クリック率向上のためのサムネイル</h3>
-                        <p class="tool-text">使用ツール: Photoshop</p>
-                    </div>
-                </div>
+            <div class="category-filter">
+                <input type="radio" id="all" name="filter" checked>
+                <label for="all">★すべて★</label>
 
-                <div class="work-item video-item">
-                    <div class="thumbnail-wrapper">
-                        <img src="images/sample3.jpg" alt="動画サムネイル">
-                        <div class="play-icon">▶</div>
-                    </div>
-                    <div class="work-info">
-                        <span class="category-tag">動画編集</span>
-                        <h3>店舗紹介 縦型ショート動画</h3>
-                        <p class="tool-text">使用ツール: Premiere Pro</p>
-                    </div>
-                </div>
+                <input type="radio" id="chirashi" name="filter">
+                <label for="chirashi">★チラシ・POP★</label>
 
-                <a href="https://example.com" target="_blank" class="work-item link-item">
-                    <div class="thumbnail-wrapper">
-                        <img src="images/sample4.jpg" alt="WEBサイトスクショ">
-                        <div class="link-overlay">🔗 サイトを見る</div>
+                <input type="radio" id="thumb" name="filter">
+                <label for="thumb">★サムネイル★</label>
+
+                <input type="radio" id="video" name="filter">
+                <label for="video">★動画編集★</label>
+
+                <input type="radio" id="web" name="filter">
+                <label for="web">★WEBサイト★</label>
+
+                <div class="gallery-grid">
+                    
+                    <div class="work-item cat-chirashi">
+                        <div class="thumbnail-wrapper">
+                            <img src="images/sample1.jpg" alt="作品名">
+                        </div>
+                        <div class="work-info">
+                            <span class="category-tag">★タグ（例：チラシ・POP）★</span>
+                            <h3>★作品のタイトル（例：〇〇施設 イベント告知チラシ）★</h3>
+                            <p class="tool-text">Illustrator</p>
+                        </div>
                     </div>
-                    <div class="work-info">
-                        <span class="category-tag">WEB制作</span>
-                        <h3>マニュアル共有用自社サイト</h3>
-                        <p class="tool-text">使用スキル: HTML / CSS</p>
+
+                    <div class="work-item cat-thumb">
+                        <div class="thumbnail-wrapper">
+                            <img src="images/sample2.jpg" alt="作品名">
+                        </div>
+                        <div class="work-info">
+                            <span class="category-tag">★タグ（例：サムネイル）★</span>
+                            <h3>★作品のタイトル★</h3>
+                            <p class="tool-text">Photoshop</p>
+                        </div>
                     </div>
-                </a>
-            </div>
-        </section>
+
+                    <div class="work-item cat-video">
+                        <div class="thumbnail-wrapper">
+                            <img src="images/sample3.jpg" alt="作品名">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <div class="work-info">
+                            <span class="category-tag">★タグ（例：動画編集）★</span>
+                            <h3>★作品のタイトル★</h3>
+                            <p class="tool-text">Premiere Pro</p>
+                        </div>
+                    </div>
+
+                    <div class="work-item cat-web">
+                        <a href="https://example.com" target="_blank" class="work-link">
+                            <div class="thumbnail-wrapper">
+                                <img src="images/sample4.jpg" alt="作品名">
+                                <div class="link-overlay"><span class="link-overlay-text">★ホバー時の文字（例：🔗 サイトを拝見）★</span></div>
+                            </div>
+                            <div class="work-info">
+                                <span class="category-tag">★タグ（例：WEB制作）★</span>
+                                <h3>★作品のタイトル★</h3>
+                                <p class="tool-text">HTML / CSS</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div> </div> </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 紺碧の庵 All Rights Reserved.</p>
+        <p>&copy; 2026 ★あなたの名前または庵名★ All Rights Reserved.</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
