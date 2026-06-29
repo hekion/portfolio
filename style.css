@@ -1,0 +1,251 @@
+/* 全体のリセットと共通設定 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0c1624; /* 深い紺（深藍） */
+    color: #f4f1ea;           /* 生成り色（温かみのある白） */
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* ① 庵（トップ・キービジュアル） */
+.hero {
+    height: 60vh;
+    background-color: #060d17; /* さらに深い紺黒 */
+    border-bottom: 2px solid #c9a054; /* 鈍い金（真鍮色）の線 */
+    display: table;
+    width: 100%;
+}
+
+.hero-content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-sub {
+    font-size: 0.95rem;
+    color: #c9a054;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    margin-bottom: 25px;
+    color: #f4f1ea;
+}
+
+.hero-desc {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    color: #b0b9c5;
+    line-height: 1.8;
+}
+
+/* セクション共通タイトル */
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #c9a054;
+    border-bottom: 1px solid #c9a054;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+/* ② 職人の紹介（プロフィール＆スキル） */
+.profile-section {
+    margin-bottom: 80px;
+}
+
+.profile-grid {
+    display: table;
+    width: 100%;
+}
+
+.profile-text {
+    display: table-cell;
+    width: 60%;
+    padding-right: 40px;
+    vertical-align: top;
+    font-size: 1rem;
+    color: #d1d8e0;
+}
+
+.skills-box {
+    display: table-cell;
+    width: 40%;
+    background-color: #121f33;
+    padding: 30px;
+    border: 1px solid #23354f;
+    border-left: 3px solid #c9a054; /* 左側にゴールドのアクセント線 */
+    vertical-align: top;
+}
+
+.skills-box h3 {
+    font-size: 1.1rem;
+    color: #c9a054;
+    margin-bottom: 15px;
+}
+
+.skills-list {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.skills-list li {
+    margin-bottom: 10px;
+}
+
+.skills-list strong {
+    color: #f4f1ea;
+}
+
+/* ③ お品書き（作品ギャラリー一覧） - 格子状レイアウト */
+.gallery-grid {
+    display: block;
+    font-size: 0; /* 隙間対策 */
+}
+
+/* 作品ごとのカード（テンプレート構造） */
+.work-item {
+    display: inline-block;
+    width: 48%; /* 2列で並べる */
+    margin-right: 4%;
+    margin-bottom: 40px;
+    vertical-align: top;
+    font-size: 1rem; /* フォントサイズ戻す */
+    background-color: #121f33;
+    border: 1px solid #23354f;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.work-item:nth-child(2n) {
+    margin-right: 0; /* 右側の余白を消す */
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
+    border-color: #c9a054;
+}
+
+/* サムネイル画像の囲み */
+.thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background-color: #060d17;
+}
+
+.thumbnail-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* 動画用：再生アイコン */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: #c9a054;
+    background-color: rgba(6, 13, 23, 0.7);
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 50%;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.work-item:hover .play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* WEBサイトリンク用：ホバー時のオーバーレイ */
+.link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 22, 36, 0.8);
+    display: table;
+    text-align: center;
+    color: #c9a054;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.link-overlay-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.work-item:hover .link-overlay {
+    opacity: 1;
+}
+
+/* 作品の情報テキスト部分 */
+.work-info {
+    padding: 20px;
+}
+
+.category-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #c9a054;
+    border: 1px solid #c9a054;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+
+.work-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #f4f1ea;
+}
+
+.tool-text {
+    font-size: 0.85rem;
+    color: #a0aec0;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid #23354f;
+    font-size: 0.8rem;
+    color: #718096;
+}
