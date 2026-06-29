@@ -6,11 +6,13 @@
 }
 
 body {
-    background-color: #0c1624; /* 深い紺（深藍） */
-    color: #f4f1ea;           /* 生成り色（温かみのある白） */
+    background-color: #0a0f14; /* 漆黒に近い深い和の紺黒 */
+    color: #e6e2da;           /* 本鳥の子紙（温かみのある和紙の白） */
     font-family: 'Noto Serif JP', serif;
     font-weight: 300;
-    line-height: 1.8;
+    line-height: 2;
+    letter-spacing: 0.05em;
+    overflow-x: hidden;
 }
 
 a {
@@ -19,64 +21,106 @@ a {
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 80px 20px;
 }
 
 /* ① 庵（トップ・キービジュアル） */
 .hero {
-    height: 60vh;
-    background-color: #060d17; /* さらに深い紺黒 */
-    border-bottom: 2px solid #c9a054; /* 鈍い金（真鍮色）の線 */
+    height: 70vh;
+    background-color: #05080c; 
+    border-bottom: 1px solid #bc9c64; /* 真鍮（ゴールド）の細い線 */
     display: table;
     width: 100%;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 20px; right: 20px; bottom: 20px; left: 20px;
+    border: 1px solid rgba(188, 156, 100, 0.15); /* 内側の和風細枠線 */
+    pointer-events: none;
 }
 
 .hero-content {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .hero-sub {
-    font-size: 0.95rem;
-    color: #c9a054;
-    letter-spacing: 0.2em;
-    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: #bc9c64;
+    letter-spacing: 0.4em;
+    margin-bottom: 30px;
 }
 
+/* タイトルの初期状態（JSで一文字ずつ出すために最初は透明にする設定を含む） */
 .hero-title {
-    font-size: 2.8rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    margin-bottom: 25px;
-    color: #f4f1ea;
+    font-size: 3.2rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    margin-bottom: 35px;
+    color: #f7f5f0;
+    text-shadow: 0 0 10px rgba(188, 156, 100, 0.2);
+    min-height: 4.5rem;
+}
+
+/* JS演出用の1文字ずつのクラス */
+.char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.char.fade {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .hero-desc {
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
-    font-size: 0.95rem;
-    color: #b0b9c5;
-    line-height: 1.8;
+    font-size: 0.9rem;
+    color: #a3aeb9;
+    text-align: justify;
 }
 
-/* セクション共通タイトル */
+/* 和モダンセクションタイトル */
 .section-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: #c9a054;
-    border-bottom: 1px solid #c9a054;
-    padding-bottom: 10px;
-    margin-bottom: 40px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #bc9c64;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
 }
 
-/* ② 職人の紹介（プロフィール＆スキル） */
+.section-title span {
+    background-color: #0a0f14;
+    padding: 0 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(188, 156, 100, 0.25);
+    z-index: 1;
+}
+
+/* ② 紹介エリア */
 .profile-section {
-    margin-bottom: 80px;
+    margin-bottom: 120px;
 }
 
 .profile-grid {
@@ -86,121 +130,187 @@ a {
 
 .profile-text {
     display: table-cell;
-    width: 60%;
-    padding-right: 40px;
+    width: 55%;
+    padding-right: 60px;
     vertical-align: top;
-    font-size: 1rem;
-    color: #d1d8e0;
+    font-size: 0.95rem;
+    color: #cbd3da;
+    text-align: justify;
 }
 
 .skills-box {
     display: table-cell;
-    width: 40%;
-    background-color: #121f33;
-    padding: 30px;
-    border: 1px solid #23354f;
-    border-left: 3px solid #c9a054; /* 左側にゴールドのアクセント線 */
-    vertical-align: top;
+    width: 45%;
+    background-color: #0e141b;
+    padding: 35px;
+    border: 1px solid #1a242f;
+    position: relative;
+}
+
+.skills-box::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 2px;
+    background-color: #bc9c64;
 }
 
 .skills-box h3 {
-    font-size: 1.1rem;
-    color: #c9a054;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #bc9c64;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
 }
 
 .skills-list {
     list-style: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .skills-list li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #a3aeb9;
 }
 
-.skills-list strong {
-    color: #f4f1ea;
+.skills-list span {
+    font-family: 'Cinzel', serif;
+    display: block;
+    color: #e6e2da;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 2px;
 }
 
-/* ③ お品書き（作品ギャラリー一覧） - 格子状レイアウト */
+/* ③ 切り替えボタン機能 */
+.category-filter {
+    text-align: center;
+}
+
+.category-filter input[type="radio"] {
+    display: none;
+}
+
+.category-filter label {
+    display: inline-block;
+    padding: 8px 24px;
+    margin: 0 8px 40px 8px;
+    font-size: 0.85rem;
+    color: #a3aeb9;
+    border: 1px solid #1a242f;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #0e141b;
+}
+
+.category-filter label:hover {
+    border-color: #bc9c64;
+    color: #bc9c64;
+}
+
+#all:checked ~ label[for="all"],
+#chirashi:checked ~ label[for="chirashi"],
+#thumb:checked ~ label[for="thumb"],
+#video:checked ~ label[for="video"],
+#web:checked ~ label[for="web"] {
+    background-color: #bc9c64;
+    color: #0a0f14;
+    border-color: #bc9c64;
+    font-weight: 500;
+}
+
+/* 作品一覧の格子状レイアウト */
 .gallery-grid {
     display: block;
-    font-size: 0; /* 隙間対策 */
+    font-size: 0;
+    text-align: left;
 }
 
-/* 作品ごとのカード（テンプレート構造） */
 .work-item {
     display: inline-block;
-    width: 48%; /* 2列で並べる */
+    width: 48%;
     margin-right: 4%;
     margin-bottom: 40px;
     vertical-align: top;
-    font-size: 1rem; /* フォントサイズ戻す */
-    background-color: #121f33;
-    border: 1px solid #23354f;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    font-size: 1rem;
+    background-color: #0e141b;
+    border: 1px solid #1a242f;
+    transition: all 0.4s ease;
 }
 
 .work-item:nth-child(2n) {
-    margin-right: 0; /* 右側の余白を消す */
+    margin-right: 0;
+}
+
+.work-link {
+    display: block;
+}
+
+/* 表示・非表示切り替えロジック */
+#chirashi:checked ~ .gallery-grid .work-item:not(.cat-chirashi),
+#thumb:checked ~ .gallery-grid .work-item:not(.cat-thumb),
+#video:checked ~ .gallery-grid .work-item:not(.cat-video),
+#web:checked ~ .gallery-grid .work-item:not(.cat-web) {
+    display: none;
 }
 
 .work-item:hover {
-    transform: translateY(-5px);
-    border-color: #c9a054;
+    border-color: #bc9c64;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-/* サムネイル画像の囲み */
 .thumbnail-wrapper {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 240px;
     overflow: hidden;
-    background-color: #060d17;
+    background-color: #05080c;
 }
 
 .thumbnail-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.3s ease;
+    filter: grayscale(20%);
+    transition: all 0.5s ease;
 }
 
-/* 動画用：再生アイコン */
+.work-item:hover .thumbnail-wrapper img {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+}
+
 .play-icon {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: #c9a054;
-    background-color: rgba(6, 13, 23, 0.7);
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    font-size: 1.5rem;
+    color: #0a0f14;
+    background-color: #bc9c64;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
     border-radius: 50%;
-    opacity: 0.6;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0.8;
+    transition: all 0.3s ease;
 }
 
 .work-item:hover .play-icon {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.1);
+    background-color: #f7f5f0;
 }
 
-/* WEBサイトリンク用：ホバー時のオーバーレイ */
 .link-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(12, 22, 36, 0.8);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(10, 15, 20, 0.85);
     display: table;
     text-align: center;
-    color: #c9a054;
-    font-weight: 600;
+    color: #bc9c64;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -208,44 +318,60 @@ a {
 .link-overlay-text {
     display: table-cell;
     vertical-align: middle;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
 }
 
 .work-item:hover .link-overlay {
     opacity: 1;
 }
 
-/* 作品の情報テキスト部分 */
 .work-info {
-    padding: 20px;
+    padding: 25px;
+    border-top: 1px solid #1a242f;
 }
 
 .category-tag {
     display: inline-block;
-    font-size: 0.75rem;
-    color: #c9a054;
-    border: 1px solid #c9a054;
-    padding: 2px 8px;
-    margin-bottom: 10px;
-    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    color: #bc9c64;
+    border: 1px solid rgba(188, 156, 100, 0.4);
+    padding: 1px 10px;
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
 }
 
 .work-info h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #f4f1ea;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #e6e2da;
 }
 
 .tool-text {
-    font-size: 0.85rem;
-    color: #a0aec0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: #7d8893;
+    letter-spacing: 0.1em;
 }
 
 /* フッター */
 .footer {
     text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid #23354f;
-    font-size: 0.8rem;
-    color: #718096;
+    padding: 60px 20px;
+    border-top: 1px solid #1a242f;
+    font-size: 0.75rem;
+    color: #5c6773;
+    letter-spacing: 0.1em;
+}
+
+/* 💡 JS演出用：スクロール連動フェードインの初期状態設定 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
