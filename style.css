@@ -1,4 +1,6 @@
-/* 全体のリセットと共通設定 */
+/* ==========================================
+   全体の共通設定と和風リセット
+   ========================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,7 +9,7 @@
 
 body {
     background-color: #0a0f14; /* 漆黒に近い深い和の紺黒 */
-    color: #e6e2da;           /* 本鳥の子紙（温かみのある和紙の白） */
+    color: #e6e2da;           /* 本鳥の子紙（和紙の白） */
     font-family: 'Noto Serif JP', serif;
     font-weight: 300;
     line-height: 2;
@@ -20,20 +22,26 @@ a {
     text-decoration: none;
 }
 
+/* 画面幅いっぱいに広げつつ、左右に程よい余白を持たせるコンテナ */
 .container {
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1600px; /* 最大幅を広げてPC大画面に対応 */
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: 80px 4%; /* パーセント指定で画面サイズに追従 */
 }
 
-/* ① 庵（トップ・キービジュアル） */
+/* ==========================================
+   ① 庵（トップ・キービジュアル）
+   ========================================== */
 .hero {
-    height: 70vh;
+    min-height: 70vh;
     background-color: #05080c; 
-    border-bottom: 1px solid #bc9c64; /* 真鍮（ゴールド）の細い線 */
-    display: table;
-    width: 100%;
+    border-bottom: 1px solid #bc9c64; /* 真鍮色の細い線 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
+    padding: 40px 20px;
 }
 
 .hero::after {
@@ -45,10 +53,9 @@ a {
 }
 
 .hero-content {
-    display: table-cell;
-    vertical-align: middle;
     text-align: center;
-    padding: 0 40px;
+    max-width: 800px;
+    z-index: 2;
 }
 
 .hero-sub {
@@ -58,18 +65,16 @@ a {
     margin-bottom: 30px;
 }
 
-/* タイトルの初期状態（JSで一文字ずつ出すために最初は透明にする設定を含む） */
 .hero-title {
-    font-size: 3.2rem;
+    font-size: clamp(2rem, 5vw, 3.5rem); /* 画面サイズに合わせて文字サイズが自動変化 */
     font-weight: 500;
     letter-spacing: 0.25em;
     margin-bottom: 35px;
     color: #f7f5f0;
     text-shadow: 0 0 10px rgba(188, 156, 100, 0.2);
-    min-height: 4.5rem;
 }
 
-/* JS演出用の1文字ずつのクラス */
+/* JS演出用の設定 */
 .char {
     display: inline-block;
     opacity: 0;
@@ -82,14 +87,15 @@ a {
 }
 
 .hero-desc {
-    max-width: 600px;
-    margin: 0 auto;
     font-size: 0.9rem;
     color: #a3aeb9;
     text-align: justify;
+    line-height: 2;
 }
 
-/* 和モダンセクションタイトル */
+/* ==========================================
+   和モダン共通セクションタイトル
+   ========================================== */
 .section-title {
     font-size: 1.4rem;
     font-weight: 500;
@@ -118,29 +124,28 @@ a {
     z-index: 1;
 }
 
-/* ② 紹介エリア */
+/* ==========================================
+   ② 紹介・プロフィールエリア（Flexboxで可変）
+   ========================================== */
 .profile-section {
     margin-bottom: 120px;
 }
 
 .profile-grid {
-    display: table;
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* 画面が狭くなったら縦に並べる */
+    gap: 40px;
 }
 
 .profile-text {
-    display: table-cell;
-    width: 55%;
-    padding-right: 60px;
-    vertical-align: top;
+    flex: 1 1 500px; /* 500pxを基準に、画面に合わせて伸縮 */
     font-size: 0.95rem;
     color: #cbd3da;
     text-align: justify;
 }
 
 .skills-box {
-    display: table-cell;
-    width: 45%;
+    flex: 1 1 350px;
     background-color: #0e141b;
     padding: 35px;
     border: 1px solid #1a242f;
@@ -179,11 +184,12 @@ a {
     font-size: 0.95rem;
     font-weight: 400;
     letter-spacing: 0.05em;
-    line-height: 1.2;
     margin-bottom: 2px;
 }
 
-/* ③ 切り替えボタン機能 */
+/* ==========================================
+   ③ お品書き・切り替えボタン機能
+   ========================================== */
 .category-filter {
     text-align: center;
 }
@@ -192,10 +198,11 @@ a {
     display: none;
 }
 
+/* ボタンもスマホでタップしやすいように調整 */
 .category-filter label {
     display: inline-block;
-    padding: 8px 24px;
-    margin: 0 8px 40px 8px;
+    padding: 8px 20px;
+    margin: 5px 4px;
     font-size: 0.85rem;
     color: #a3aeb9;
     border: 1px solid #1a242f;
@@ -213,34 +220,31 @@ a {
 #chirashi:checked ~ label[for="chirashi"],
 #thumb:checked ~ label[for="thumb"],
 #video:checked ~ label[for="video"],
-#web:checked ~ label[for="web"] {
+#web:checked ~ label[for="web"],
+#data:checked ~ label[for="data"] {
     background-color: #bc9c64;
     color: #0a0f14;
     border-color: #bc9c64;
     font-weight: 500;
 }
 
-/* 作品一覧の格子状レイアウト */
+/* ==========================================
+   重要：格子状レイアウト（CSS Gridで画面幅をフル活用）
+   ========================================== */
 .gallery-grid {
-    display: block;
-    font-size: 0;
+    display: grid;
+    /* 画面サイズに応じて、最小幅320pxのカードが自動で入るだけ列を作る（超可変設定） */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px; /* カード同士の間隔 */
     text-align: left;
+    margin-top: 40px;
 }
 
 .work-item {
-    display: inline-block;
-    width: 48%;
-    margin-right: 4%;
-    margin-bottom: 40px;
-    vertical-align: top;
-    font-size: 1rem;
     background-color: #0e141b;
     border: 1px solid #1a242f;
     transition: all 0.4s ease;
-}
-
-.work-item:nth-child(2n) {
-    margin-right: 0;
+    width: 100%; /* 横幅はGridが自動計算 */
 }
 
 .work-link {
@@ -251,24 +255,29 @@ a {
 #chirashi:checked ~ .gallery-grid .work-item:not(.cat-chirashi),
 #thumb:checked ~ .gallery-grid .work-item:not(.cat-thumb),
 #video:checked ~ .gallery-grid .work-item:not(.cat-video),
-#web:checked ~ .gallery-grid .work-item:not(.cat-web) {
+#web:checked ~ .gallery-grid .work-item:not(.cat-web),
+#data:checked ~ .gallery-grid .work-item:not(.cat-data) {
     display: none;
 }
 
 .work-item:hover {
     border-color: #bc9c64;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
+/* サムネイル画像のレスポンシブ対応 */
 .thumbnail-wrapper {
     position: relative;
     width: 100%;
-    height: 240px;
+    height: 0;
+    padding-top: 62.5%; /* 16:10の黄金比率を保ったまま画面に合わせて伸縮 */
     overflow: hidden;
     background-color: #05080c;
 }
 
 .thumbnail-wrapper img {
+    position: absolute;
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -281,16 +290,15 @@ a {
     transform: scale(1.03);
 }
 
+/* 各種アイコン・オーバーレイ */
 .play-icon {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.5rem;
     color: #0a0f14;
     background-color: #bc9c64;
-    width: 50px;
-    height: 50px;
+    width: 50px; height: 50px;
     line-height: 50px;
     text-align: center;
     border-radius: 50%;
@@ -308,16 +316,15 @@ a {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(10, 15, 20, 0.85);
-    display: table;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #bc9c64;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .link-overlay-text {
-    display: table-cell;
-    vertical-align: middle;
     font-size: 0.9rem;
     letter-spacing: 0.1em;
 }
@@ -326,6 +333,7 @@ a {
     opacity: 1;
 }
 
+/* 作品情報テキスト */
 .work-info {
     padding: 25px;
     border-top: 1px solid #1a242f;
@@ -355,7 +363,9 @@ a {
     letter-spacing: 0.1em;
 }
 
-/* フッター */
+/* ==========================================
+   フッター
+   ========================================== */
 .footer {
     text-align: center;
     padding: 60px 20px;
@@ -365,13 +375,40 @@ a {
     letter-spacing: 0.1em;
 }
 
-/* 💡 JS演出用：スクロール連動フェードインの初期状態設定 */
+/* ==========================================
+   JS演出用：スクロール連動フェードイン
+   ========================================== */
 .fade-in {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
     transition: opacity 1.2s ease, transform 1.2s ease;
 }
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==========================================
+   スマホ特有の微調整（画面幅が狭い時用）
+   ========================================== */
+@media (max-width: 600px) {
+    .container {
+        padding: 50px 15px;
+    }
+    .hero {
+        min-height: 50vh;
+    }
+    .section-title {
+        font-size: 1.2rem;
+    }
+    .section-title span {
+        padding: 0 15px;
+    }
+    .category-filter label {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr; /* スマホでは完全に1列に縦並び */
+    }
 }
