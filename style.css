@@ -1,10 +1,226 @@
-/* ==========================================
-   修正：格子状レイアウト（PCでは常に美しい2列を維持）
-   ========================================== */
+/* 全体のリセットと共通設定 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0a0f14;
+    color: #e6e2da;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    line-height: 2;
+    letter-spacing: 0.05em;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 4%;
+}
+
+/* ① 庵（トップ・キービジュアル） */
+.hero {
+    min-height: 70vh;
+    background-color: #05080c; 
+    border-bottom: 1px solid #bc9c64;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px 20px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 20px; right: 20px; bottom: 20px; left: 20px;
+    border: 1px solid rgba(188, 156, 100, 0.15);
+    pointer-events: none;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    z-index: 2;
+}
+
+.hero-sub {
+    font-size: 0.85rem;
+    color: #bc9c64;
+    letter-spacing: 0.4em;
+    margin-bottom: 30px;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    margin-bottom: 35px;
+    color: #f7f5f0;
+    text-shadow: 0 0 10px rgba(188, 156, 100, 0.2);
+}
+
+.char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.char.fade {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-desc {
+    font-size: 0.9rem;
+    color: #a3aeb9;
+    text-align: justify;
+    line-height: 2;
+}
+
+/* セクションタイトル */
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #bc9c64;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title span {
+    background-color: #0a0f14;
+    padding: 0 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(188, 156, 100, 0.25);
+    z-index: 1;
+}
+
+/* ② 紹介・プロフィールエリア */
+.profile-section {
+    margin-bottom: 120px;
+}
+
+.profile-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.profile-text {
+    flex: 1 1 500px;
+    font-size: 0.95rem;
+    color: #cbd3da;
+    text-align: justify;
+}
+
+.skills-box {
+    flex: 1 1 350px;
+    background-color: #0e141b;
+    padding: 35px;
+    border: 1px solid #1a242f;
+    position: relative;
+}
+
+.skills-box::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 2px;
+    background-color: #bc9c64;
+}
+
+.skills-box h3 {
+    font-size: 1rem;
+    color: #bc9c64;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.skills-list {
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.skills-list li {
+    margin-bottom: 15px;
+    color: #a3aeb9;
+}
+
+.skills-list span {
+    font-family: 'Cinzel', serif;
+    display: block;
+    color: #e6e2da;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+/* ③ お品書き・切り替えボタン機能 */
+.category-filter {
+    text-align: center;
+}
+
+.category-filter input[type="radio"] {
+    display: none;
+}
+
+.category-filter label {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 5px 4px;
+    font-size: 0.85rem;
+    color: #a3aeb9;
+    border: 1px solid #1a242f;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #0e141b;
+}
+
+.category-filter label:hover {
+    border-color: #bc9c64;
+    color: #bc9c64;
+}
+
+#all:checked ~ label[for="all"],
+#chirashi:checked ~ label[for="chirashi"],
+#thumb:checked ~ label[for="thumb"],
+#video:checked ~ label[for="video"],
+#web:checked ~ name="filter" ~ label[for="web"],
+#web:checked ~ label[for="web"],
+#data:checked ~ label[for="data"] {
+    background-color: #bc9c64;
+    color: #0a0f14;
+    border-color: #bc9c64;
+    font-weight: 500;
+}
+
+/* 作品一覧の格子状レイアウト（PC用2列設定） */
 .gallery-grid {
     display: flex;
-    flex-wrap: wrap; /* 折り返しを許可 */
-    gap: 40px 4%;   /* 縦の隙間を40px、横の隙間を4%に設定 */
+    flex-wrap: wrap;
+    gap: 40px 4%;
     text-align: left;
     margin-top: 40px;
     width: 100%;
@@ -14,20 +230,20 @@
     background-color: #0e141b;
     border: 1px solid #1a242f;
     transition: all 0.4s ease;
-    width: 48%; /* 💡PC・タブレットでは常に横並び2列（48%×2 + 隙間4% = 100%） */
+    width: 48%; /* PC・タブレットでは綺麗な2列 */
 }
 
 .work-link {
     display: block;
 }
 
-/* 表示・非表示切り替えロジック（崩れ防止の調整済み） */
+/* 切り替え表示ロジック */
 #chirashi:checked ~ .gallery-grid .work-item:not(.cat-chirashi),
 #thumb:checked ~ .gallery-grid .work-item:not(.cat-thumb),
 #video:checked ~ .gallery-grid .work-item:not(.cat-video),
 #web:checked ~ .gallery-grid .work-item:not(.cat-web),
 #data:checked ~ .gallery-grid .work-item:not(.cat-data) {
-    display: none !important; /* 強制的に非表示にしてレイアウト崩れを防ぐ */
+    display: none !important;
 }
 
 .work-item:hover {
@@ -35,12 +251,11 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
-/* サムネイル画像のレスポンシブ対応 */
 .thumbnail-wrapper {
     position: relative;
     width: 100%;
     height: 0;
-    padding-top: 60%; /* 横長で美しく収まる和の比率 */
+    padding-top: 60%;
     overflow: hidden;
     background-color: #05080c;
 }
@@ -60,7 +275,6 @@
     transform: scale(1.03);
 }
 
-/* 各種アイコン・オーバーレイ */
 .play-icon {
     position: absolute;
     top: 50%; left: 50%;
@@ -103,7 +317,6 @@
     opacity: 1;
 }
 
-/* 作品情報テキスト */
 .work-info {
     padding: 25px;
     border-top: 1px solid #1a242f;
@@ -133,9 +346,7 @@
     letter-spacing: 0.1em;
 }
 
-/* ==========================================
-   フッター
-   ========================================== */
+/* フッター */
 .footer {
     text-align: center;
     padding: 60px 20px;
@@ -145,9 +356,7 @@
     letter-spacing: 0.1em;
 }
 
-/* ==========================================
-   JS演出用：スクロール連動フェードイン
-   ========================================== */
+/* フェードイン演出設定 */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -158,9 +367,7 @@
     transform: translateY(0);
 }
 
-/* ==========================================
-   スマホ特有の微調整（画面幅が狭い時用）
-   ========================================== */
+/* スマホ用レスポンシブ微調整 */
 @media (max-width: 768px) {
     .container {
         padding: 50px 15px;
@@ -182,6 +389,6 @@
         gap: 20px 0;
     }
     .work-item {
-        width: 100%; /* 💡スマホやタブレットでは完全に1列に縦並び */
+        width: 100%; /* スマホでは完全に1列に縦並び */
     }
 }
