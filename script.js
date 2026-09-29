@@ -37,4 +37,40 @@ document.addEventListener('DOMContentLoaded', () => {
     
     scrollFade();
     window.addEventListener('scroll', scrollFade);
+
+    // 演出③：画像クリック時の拡大表示（モーダル表示）機能
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalClose = document.querySelector('.modal-close');
+    const workItems = document.querySelectorAll('.work-item');
+
+    workItems.forEach(item => {
+        // WEBサイトカテゴリなどリンク付きカードはモーダルを開かない処理
+        if (item.querySelector('.work-link')) return;
+
+        item.addEventListener('click', () => {
+            const img = item.querySelector('.thumbnail-wrapper img');
+            if (img && modal && modalImg) {
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                modal.classList.add('active');
+            }
+        });
+    });
+
+    // 閉じるボタンをクリックでモーダルを非表示
+    if (modalClose && modal) {
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+    }
+
+    // モーダルの背景エリアクリックで閉じる
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    }
 });
