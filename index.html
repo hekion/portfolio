@@ -3,212 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KONPEKI｜PORTFOLIO</title>
-    <link rel="stylesheet" href="style.css">
+    <title>紺碧 | K O N P E K I</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Yuji+Boku&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b131d;
+            --text-color: #e2e8f0;
+            --gold-color: #c5a059;
+            --sub-color: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Serif JP', serif;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 桜吹雪アニメーション */
+        .sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 100%);
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* メインレイアウト */
+        .wrapper {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        /* PC: 左上のメニュー (横並び) */
+        .nav-menu {
+            position: absolute;
+            top: 50px;
+            left: 60px;
+            display: flex;
+            gap: 30px;
+            z-index: 20;
+        }
+
+        .nav-menu a {
+            color: var(--sub-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-color);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* 右側の縦書きタイトル */
+        .vertical-title {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-family: 'Yuji Boku', serif;
+            font-size: 3.5rem;
+            letter-spacing: 0.4em;
+            color: var(--text-color);
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+            z-index: 20;
+        }
+
+        /* 中央の丸窓 (円窓) */
+        .marumado-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 0 12px rgba(27, 42, 74, 0.8), 
+                        0 0 0 14px var(--gold-color),
+                        0 20px 40px rgba(0, 0, 0, 0.6);
+            background-color: #000;
+        }
+
+        .marumado-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .marumado-slide.active {
+            opacity: 1;
+        }
+
+        .marumado-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* レスポンシブ対応 (スマホ用) */
+        @media screen and (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* スマホ: 左下のメニュー (縦並び) */
+            .nav-menu {
+                top: auto;
+                bottom: 40px;
+                left: 40px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            /* スマホ: 右側の縦書きタイトルを上部や少し控えめに配置するか、あるいは右上に配置 */
+            .vertical-title {
+                top: 40px;
+                right: 40px;
+                transform: none;
+                font-size: 2.2rem;
+            }
+
+            .marumado-container {
+                width: 260px;
+                height: 260px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h2 class="hero-title" id="typewriter">KONPEKI'S WORKING</h2>
+    <!-- 画面全体に舞う桜の花びら -->
+    <div class="sakura-container" id="sakura"></div>
+
+    <div class="wrapper">
+        <!-- PC: 左上 / スマホ: 左下 のメニュー -->
+        <nav class="nav-menu">
+            <a href="#photo">PHOTO</a>
+            <a href="#flyer">FLYER</a>
+            <a href="#website">WEBSITE</a>
+        </nav>
+
+        <!-- 茶室の丸窓（ランダム画像スライド） -->
+        <div class="marumado-container" id="marumado">
+            <!-- サンプルとしてお手元の画像パスを設定しています -->
+            <div class="marumado-slide active"><img src="images/kakkeko2026.png" alt="作品1"></div>
+            <div class="marumado-slide"><img src="images/Eufy.png" alt="作品2"></div>
+            <div class="marumado-slide"><img src="images/BOARD30.png" alt="作品3"></div>
+            <div class="marumado-slide"><img src="images/sample4.jpg" alt="作品4"></div>
         </div>
-    </header>
 
-    <main class="container">
-        
-        <section class="portfolio-section fade-in">
-            <h2 class="section-title"><span>お品書き</span></h2>
-
-            <div class="category-filter">
-                <input type="radio" id="all" name="filter" checked>
-                <label for="all">すべて</label>
-
-                <input type="radio" id="chirashi" name="filter">
-                <label for="chirashi">チラシ・POP</label>
-
-                <input type="radio" id="thumb" name="filter">
-                <label for="thumb">サムネイル</label>
-
-                <input type="radio" id="video" name="filter">
-                <label for="video">動画編集</label>
-
-                <input type="radio" id="web" name="filter">
-                <label for="web">WEBサイト</label>
-                
-
-                <div class="gallery-grid">
-                    
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/kakkeko2026.png" alt="かけっこ教室">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>かけっこ教室</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-                    
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/Eufy.png" alt="Eufy使用中">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>Eufy使用中</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-                    
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/BOARD30.png" alt="BOARD30参加者募集">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>BOARD30参加者募集中</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-                    
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/bisyonure2608.png" alt="びしょ濡れかけっこ2026年8月">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>びしょ濡れかけっこ2026年8月開催分</h3>
-                            <h4>※チラシに使用している写真の撮影も担当</h4>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/Suup.png" alt="Suup終了のお知らせ">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>Suup終了のお知らせ</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-                    
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/rakutin260912.png" alt="楽ちん体操2026年9-12月">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>楽ちん体操2026年9-12月開催分</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/morningyoga26.png" alt="モーニングヨガ2026年秋">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>モーニングヨガ2026年秋開催分</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/tyouzyu26-map.png" alt="健康長寿フェスマップ">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>健康長寿フェス2026 マップ</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-                    
-                    <div class="work-item cat-chirashi">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/tyouzyu26-time.png" alt="健康長寿フェスタイムスケジュール">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">チラシ・POP</span>
-                            <h3>健康長寿フェス2026 タイムスケジュール</h3>
-                            <p class="tool-text">Canva</p>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    <div class="work-item cat-thumb" style="display: none;">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/sample2.jpg" alt="作品名">
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">サムネイル</span>
-                            <h3>★作品のタイトル★</h3>
-                            <p class="tool-text">Photoshop</p>
-                        </div>
-                    </div>
-
-                    <div class="work-item cat-video" style="display: none;">
-                        <div class="thumbnail-wrapper">
-                            <img src="images/sample3.jpg" alt="作品名">
-                            <div class="play-icon">▶</div>
-                        </div>
-                        <div class="work-info">
-                            <span class="category-tag">動画編集</span>
-                            <h3>★作品のタイトル★</h3>
-                            <p class="tool-text">Premiere Pro</p>
-                        </div>
-                    </div>
-
-                    <div class="work-item cat-web">
-                        <a href="https://go-travid.com" target="_blank" class="work-link">
-                            <div class="thumbnail-wrapper">
-                                <img src="images/sample4.jpg" alt="TRAVID">
-                                <div class="link-overlay"><span class="link-overlay-text">サイトを見る</span></div>
-                            </div>
-                            <div class="work-info">
-                                <span class="category-tag">WEBサイト</span>
-                                <h3>TRAVID</h3>
-                                <p class="tool-text">HTML / CSS</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="work-item cat-web">
-                        <a href="https://hekion.github.io/ganar/" target="_blank" class="work-link">
-                            <div class="thumbnail-wrapper">
-                                <img src="images/sample4.jpg" alt="GANAR">
-                                <div class="link-overlay"><span class="link-overlay-text">サイトを見る</span></div>
-                            </div>
-                            <div class="work-info">
-                                <span class="category-tag">WEBサイト</span>
-                                <h3>GANAR</h3>
-                                <p class="tool-text">HTML / CSS</p>
-                            </div>
-                        </a>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div id="modal" class="modal">
-        <span class="modal-close">×</span>
-        <img class="modal-content" id="modal-img" alt="拡大画像">
+        <!-- 画面右側の筆文字・縦書きタイトル -->
+        <h1 class="vertical-title">紺碧</h1>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 Konpeki All Rights Reserved.</p>
-    </footer>
+    <script>
+        // 1. 桜の花びらをランダムに生成するスクリプト
+        const sakuraContainer = document.getElementById('sakura');
+        const petalCount = 25;
 
-    <script src="script.js"></script>
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            const size = Math.random() * 8 + 6; // 6px〜14px
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 1.3}px`;
+            
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.top = `-${Math.random() * 20}vh`;
+            
+            const duration = Math.random() * 6 + 6; // 6秒〜12秒
+            const delay = Math.random() * 8; // 0秒〜8秒遅延
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${delay}s`;
+            
+            sakuraContainer.appendChild(petal);
+        }
+
+        // 2. 丸窓の中の画像をランダムに切り替えるスクリプト
+        const slides = document.querySelectorAll('.marumado-slide');
+        let currentIndex = 0;
+
+        function changeSlide() {
+            slides[currentIndex].classList.remove('active');
+            
+            // ランダムに次のインデックスを選ぶ（現在と違うものを選ぶ）
+            let nextIndex;
+            do {
+                nextIndex = Math.floor(Math.random() * slides.length);
+            } while (nextIndex === currentIndex && slides.length > 1);
+
+            currentIndex = nextIndex;
+            slides[currentIndex].classList.add('active');
+        }
+
+        // 4秒ごとに切り替え
+        setInterval(changeSlide, 4000);
+    </script>
 </body>
 </html>
