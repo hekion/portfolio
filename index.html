@@ -6,13 +6,14 @@
     <title>紺碧 | K O N P E K I</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Yuji+Boku&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0b131d;
             --text-color: #e2e8f0;
             --gold-color: #c5a059;
-            --sub-color: rgba(255, 255, 255, 0.6);
+            --fusuma-color: #162235;
+            --fusuma-edge: #0e1725;
         }
 
         * {
@@ -25,246 +26,446 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Noto Serif JP', serif;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* 桜吹雪アニメーション */
-        .sakura-container {
+        /* 最初のファーストビュー（襖画面） */
+        .hero-fusuma {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            z-index: 100;
+            display: flex;
+            pointer-events: none; /* 襖が開いた後はクリック等を通すためJSで制御または非表示に */
+            transition: opacity 0.5s ease;
+        }
+
+        .fusuma-panel {
+            position: relative;
+            width: 50vw;
+            height: 100vh;
+            background-color: var(--fusuma-color);
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
             overflow: hidden;
         }
 
-        .petal {
+        .fusuma-left {
+            border-right: 4px solid var(--fusuma-edge);
+            transform-origin: left;
+        }
+
+        .fusuma-right {
+            border-left: 4px solid var(--fusuma-edge);
+            transform-origin: right;
+        }
+
+        /* スクロールに応じて左右の襖が開く状態 */
+        body.open .fusuma-left {
+            transform: translateX(-100%);
+        }
+
+        body.open .fusuma-right {
+            transform: translateX(100%);
+        }
+
+        /* 襖の引き手（取っ手） */
+        .fusuma-handle {
             position: absolute;
-            background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 100%);
-            border-radius: 150% 0 150% 0;
-            opacity: 0.7;
-            animation: fall linear infinite;
+            top: 50%;
+            width: 40px;
+            height: 90px;
+            background: linear-gradient(135deg, #dfc07e 0%, #9a7835 100%);
+            border: 2px solid #5d4416;
+            border-radius: 4px;
+            transform: translateY(-50%);
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(110vh) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
+        .fusuma-left .fusuma-handle {
+            right: -22px;
         }
 
-        /* メインレイアウト */
-        .wrapper {
-            position: relative;
+        .fusuma-right .fusuma-handle {
+            left: -22px;
+        }
+
+        /* 襖が閉まっているときの縦書きタイトル */
+        .hero-title-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2;
+            z-index: 101;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
         }
 
-        /* PC: 左上のメニュー (横並び) */
-        .nav-menu {
-            position: absolute;
-            top: 50px;
-            left: 60px;
-            display: flex;
-            gap: 30px;
-            z-index: 20;
-        }
-
-        .nav-menu a {
-            color: var(--sub-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--gold-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: var(--gold-color);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        /* 右側の縦書きタイトル */
         .vertical-title {
-            position: absolute;
-            right: 60px;
-            top: 50%;
-            transform: translateY(-50%);
             writing-mode: vertical-rl;
             font-family: 'Yuji Boku', serif;
-            font-size: 3.5rem;
-            letter-spacing: 0.4em;
+            font-size: 6rem;
+            letter-spacing: 0.5em;
             color: var(--text-color);
-            text-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
-            z-index: 20;
+            text-shadow: 0 0 30px rgba(197, 160, 89, 0.4), 0 5px 15px rgba(0,0,0,0.9);
         }
 
-        /* 中央の丸窓 (円窓) */
-        .marumado-container {
-            position: relative;
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 0 12px rgba(27, 42, 74, 0.8), 
-                        0 0 0 14px var(--gold-color),
-                        0 20px 40px rgba(0, 0, 0, 0.6);
-            background-color: #000;
-        }
-
-        .marumado-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        body.open .hero-title-wrapper {
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
         }
 
-        .marumado-slide.active {
-            opacity: 1;
+        /* メインコンテンツ（スクロール先） */
+        .main-container {
+            position: relative;
+            min-height: 200vh;
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .marumado-slide img {
+        .scroll-guide {
+            text-align: center;
+            padding: 40px 0 80px;
+            color: var(--gold-color);
+            letter-spacing: 0.3em;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* 絞り込みフィルタータブ */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--gold-color);
+            color: var(--text-color);
+            padding: 10px 25px;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--gold-color);
+            color: var(--bg-color);
+        }
+
+        /* 作品ギャラリーグリッド */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .work-item {
+            background: rgba(22, 34, 53, 0.6);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .work-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-color);
+        }
+
+        .thumbnail-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .thumbnail-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        /* レスポンシブ対応 (スマホ用) */
+        .work-item:hover .thumbnail-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .work-info {
+            padding: 20px;
+        }
+
+        .category-tag {
+            font-size: 0.75rem;
+            color: var(--gold-color);
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .work-info h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .tool-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .work-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* 絞り込み非表示用 */
+        .work-item.hide {
+            display: none;
+        }
+
+        /* レスポンシブ対応 */
         @media screen and (max-width: 768px) {
-            .wrapper {
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            /* スマホ: 左下のメニュー (縦並び) */
-            .nav-menu {
-                top: auto;
-                bottom: 40px;
-                left: 40px;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            /* スマホ: 右側の縦書きタイトルを上部や少し控えめに配置するか、あるいは右上に配置 */
             .vertical-title {
-                top: 40px;
-                right: 40px;
-                transform: none;
-                font-size: 2.2rem;
+                font-size: 4rem;
             }
-
-            .marumado-container {
-                width: 260px;
-                height: 260px;
+            .main-container {
+                padding: 40px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 画面全体に舞う桜の花びら -->
-    <div class="sakura-container" id="sakura"></div>
-
-    <div class="wrapper">
-        <!-- PC: 左上 / スマホ: 左下 のメニュー -->
-        <nav class="nav-menu">
-            <a href="#photo">PHOTO</a>
-            <a href="#flyer">FLYER</a>
-            <a href="#website">WEBSITE</a>
-        </nav>
-
-        <!-- 茶室の丸窓（ランダム画像スライド） -->
-        <div class="marumado-container" id="marumado">
-            <!-- サンプルとしてお手元の画像パスを設定しています -->
-            <div class="marumado-slide active"><img src="images/kakkeko2026.png" alt="作品1"></div>
-            <div class="marumado-slide"><img src="images/Eufy.png" alt="作品2"></div>
-            <div class="marumado-slide"><img src="images/BOARD30.png" alt="作品3"></div>
-            <div class="marumado-slide"><img src="images/sample4.jpg" alt="作品4"></div>
+    <!-- ファーストビュー：襖と力強い縦書きタイトル -->
+    <div class="hero-fusuma" id="fusuma">
+        <div class="fusuma-panel fusuma-left">
+            <div class="fusuma-handle"></div>
         </div>
+        <div class="fusuma-panel fusuma-right">
+            <div class="fusuma-handle"></div>
+        </div>
+    </div>
 
-        <!-- 画面右側の筆文字・縦書きタイトル -->
+    <div class="hero-title-wrapper" id="titleWrapper">
         <h1 class="vertical-title">紺碧</h1>
     </div>
 
+    <!-- メインコンテンツ（作品一覧＆絞り込み） -->
+    <main class="main-container">
+        <div class="scroll-guide">↓ スクロールして開く ↓</div>
+
+        <!-- 絞り込みボタン -->
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">すべて</button>
+            <button class="filter-btn" data-filter="chirashi">チラシ・POP</button>
+            <button class="filter-btn" data-filter="thumb">サムネイル</button>
+            <button class="filter-btn" data-filter="video">動画編集</button>
+            <button class="filter-btn" data-filter="web">WEBサイト</button>
+        </div>
+
+        <!-- ギャラリー -->
+        <div class="gallery-grid">
+            
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/kakkeko2026.png" alt="かけっこ教室">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>かけっこ教室</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+            
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/Eufy.png" alt="Eufy使用中">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>Eufy使用中</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+            
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/BOARD30.png" alt="BOARD30参加者募集">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>BOARD30参加者募集中</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+            
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/bisyonure2608.png" alt="びしょ濡れかけっこ2026年8月">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>びしょ濡れかけっこ2026年8月開催分</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/Suup.png" alt="Suup終了のお知らせ">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>Suup終了のお知らせ</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+            
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/rakutin260912.png" alt="楽ちん体操2026年9-12月">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>楽ちん体操2026年9-12月開催分</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/morningyoga26.png" alt="モーニングヨガ2026年秋">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>モーニングヨガ2026年秋開催分</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/tyouzyu26-map.png" alt="健康長寿フェスマップ">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>健康長寿フェス2026 マップ</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+            
+            <div class="work-item" data-category="chirashi">
+                <div class="thumbnail-wrapper">
+                    <img src="images/tyouzyu26-time.png" alt="健康長寿フェスタイムスケジュール">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">チラシ・POP</span>
+                    <h3>健康長寿フェス2026 タイムスケジュール</h3>
+                    <p class="tool-text">Canva</p>
+                </div>
+            </div>
+            
+            <!-- サムネイル（通常は非表示、絞り込みで表示可能） -->
+            <div class="work-item hide" data-category="thumb">
+                <div class="thumbnail-wrapper">
+                    <img src="images/sample2.jpg" alt="作品名">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">サムネイル</span>
+                    <h3>★作品のタイトル★</h3>
+                    <p class="tool-text">Photoshop</p>
+                </div>
+            </div>
+
+            <!-- 動画編集（通常は非表示、絞り込みで表示可能） -->
+            <div class="work-item hide" data-category="video">
+                <div class="thumbnail-wrapper">
+                    <img src="images/sample3.jpg" alt="作品名">
+                </div>
+                <div class="work-info">
+                    <span class="category-tag">動画編集</span>
+                    <h3>★作品のタイトル★</h3>
+                    <p class="tool-text">Premiere Pro</p>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="web">
+                <a href="https://go-travid.com" target="_blank" class="work-link">
+                    <div class="thumbnail-wrapper">
+                        <img src="images/sample4.jpg" alt="TRAVID">
+                    </div>
+                    <div class="work-info">
+                        <span class="category-tag">WEBサイト</span>
+                        <h3>TRAVID</h3>
+                        <p class="tool-text">HTML / CSS</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="work-item" data-category="web">
+                <a href="https://hekion.github.io/ganar/" target="_blank" class="work-link">
+                    <div class="thumbnail-wrapper">
+                        <img src="images/sample4.jpg" alt="GANAR">
+                    </div>
+                    <div class="work-info">
+                        <span class="category-tag">WEBサイト</span>
+                        <h3>GANAR</h3>
+                        <p class="tool-text">HTML / CSS</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
     <script>
-        // 1. 桜の花びらをランダムに生成するスクリプト
-        const sakuraContainer = document.getElementById('sakura');
-        const petalCount = 25;
+        // 1. スクロールに応じて襖が開くアニメーション
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 20) {
+                document.body.classList.add('open');
+            } else {
+                document.body.classList.remove('open');
+            }
+        });
 
-        for (let i = 0; i < petalCount; i++) {
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            
-            const size = Math.random() * 8 + 6; // 6px〜14px
-            petal.style.width = `${size}px`;
-            petal.style.height = `${size * 1.3}px`;
-            
-            petal.style.left = `${Math.random() * 100}vw`;
-            petal.style.top = `-${Math.random() * 20}vh`;
-            
-            const duration = Math.random() * 6 + 6; // 6秒〜12秒
-            const delay = Math.random() * 8; // 0秒〜8秒遅延
-            petal.style.animationDuration = `${duration}s`;
-            petal.style.animationDelay = `${delay}s`;
-            
-            sakuraContainer.appendChild(petal);
-        }
+        // 2. 絞り込み機能の制御
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const workItems = document.querySelectorAll('.work-item');
 
-        // 2. 丸窓の中の画像をランダムに切り替えるスクリプト
-        const slides = document.querySelectorAll('.marumado-slide');
-        let currentIndex = 0;
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // アクティブクラスの切り替え
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-        function changeSlide() {
-            slides[currentIndex].classList.remove('active');
-            
-            // ランダムに次のインデックスを選ぶ（現在と違うものを選ぶ）
-            let nextIndex;
-            do {
-                nextIndex = Math.floor(Math.random() * slides.length);
-            } while (nextIndex === currentIndex && slides.length > 1);
+                const filter = btn.getAttribute('data-filter');
 
-            currentIndex = nextIndex;
-            slides[currentIndex].classList.add('active');
-        }
-
-        // 4秒ごとに切り替え
-        setInterval(changeSlide, 4000);
+                workItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
