@@ -104,7 +104,13 @@ body.open .fusuma-right {
     font-size: 8rem;
     letter-spacing: 0.6em;
     color: #111;
-    text-shadow: 2px 2px 10px rgba(197, 160, 89, 0.3);
+    /* 金色の影を多重に重ねて強力に発光させ、襖の縁や背景でも黒文字がハッキリ見えるように調整 */
+    text-shadow: 
+        0 0 8px rgba(197, 160, 89, 0.9),
+        0 0 16px rgba(197, 160, 89, 0.7),
+        2px 2px 4px rgba(255, 255, 255, 0.8),
+        -2px -2px 4px rgba(255, 255, 255, 0.8),
+        2px 2px 12px rgba(197, 160, 89, 0.8);
 }
 
 /* 襖の縁にかかっても見やすいように背景と余白をつけたスクロール案内 */
@@ -162,7 +168,7 @@ body.open .hero-overlay {
     padding: 80px 40px;
     max-width: 1200px;
     margin: 0 auto;
-    z-index: 150; /* フィルターボタンを確実にクリックできるように手前に配置 */
+    z-index: 150;
 }
 
 .spacer {
