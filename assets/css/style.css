@@ -175,6 +175,116 @@ body.open .hero-overlay {
     height: 120vh;
 }
 
+/* 「日々の記録」と5枚の雑多な写真のウェルカムスペース */
+.welcome-space {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 140px;
+}
+
+.welcome-title {
+    font-size: 1.35rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-color);
+    margin-bottom: 90px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.chaotic-gallery {
+    position: absolute;
+    width: 100%;
+    height: 480px;
+    max-width: 950px;
+    pointer-events: none;
+}
+
+.chaotic-photo {
+    position: absolute;
+    background: #fff;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    border-radius: 2px;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+}
+
+.chaotic-photo:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 10;
+}
+
+.chaotic-photo img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+/* 5枚の写真をバラバラに配置（雑多なポラロイド風） */
+.cp-1 {
+    width: 200px;
+    top: 0px;
+    left: 4%;
+    transform: rotate(-7deg);
+}
+.cp-2 {
+    width: 220px;
+    top: 20px;
+    right: 6%;
+    transform: rotate(6deg);
+}
+.cp-3 {
+    width: 180px;
+    bottom: 10px;
+    left: 18%;
+    transform: rotate(4deg);
+}
+.cp-4 {
+    width: 210px;
+    bottom: 0px;
+    right: 20%;
+    transform: rotate(-5deg);
+}
+.cp-5 {
+    width: 190px;
+    top: 100px;
+    left: 41%;
+    transform: rotate(-2deg);
+}
+
+.welcome-scroll-hint {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.6;
+}
+
+.welcome-scroll-hint span {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #94a3b8;
+}
+
+.welcome-scroll-hint .arrow-down {
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid #94a3b8;
+    border-bottom: 1px solid #94a3b8;
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+}
+
 .filter-container {
     display: flex;
     justify-content: center;
@@ -279,4 +389,13 @@ body.open .hero-overlay {
     .main-container {
         padding: 40px 20px;
     }
+    .chaotic-gallery {
+        height: 380px;
+    }
+    .cp-1 { width: 130px; left: 2%; top: 10px; }
+    .cp-2 { width: 140px; right: 2%; top: 0px; }
+    .cp-3 { width: 120px; bottom: 10px; left: 8%; }
+    .cp-4 { width: 130px; bottom: 10px; right: 8%; }
+    .cp-5 { width: 120px; top: 120px; left: 34%; }
+    .chaotic-photo img { height: 110px; }
 }
