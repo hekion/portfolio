@@ -18,8 +18,7 @@ body {
     color: #e2e8f0;
     font-family: 'Noto Serif JP', serif;
     overflow-x: hidden;
-    /* スクロール量を確保してしっかり襖が開くようにする */
-    height: 300vh; 
+    height: 300vh;
 }
 
 /* 最初のファーストビュー（白い木枠の襖画面） */
@@ -31,7 +30,7 @@ body {
     height: 100vh;
     z-index: 100;
     display: flex;
-    pointer-events: none; /* 襖が開いた後に下の要素をクリックできるようにする */
+    pointer-events: none;
 }
 
 .fusuma-panel {
@@ -163,7 +162,7 @@ body.open .hero-overlay {
     opacity: 0;
 }
 
-/* メインコンテンツを画面の最上部に配置し、無駄な空白をなくす */
+/* メインコンテンツ */
 .main-container {
     position: absolute;
     top: 0;
@@ -177,92 +176,82 @@ body.open .hero-overlay {
     z-index: 10;
 }
 
-/* 「日々の記録」と5枚の雑多な写真のウェルカムスペース（最初からトップに配置） */
+/* 5枚の雑多な写真のウェルカムスペース（文言なしで写真でダイナミックに配置） */
 .welcome-space {
-    height: 90vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-bottom: 50px;
-}
-
-.welcome-title {
-    font-size: 1.35rem;
-    letter-spacing: 0.4em;
-    color: var(--gold-color);
-    margin-bottom: 70px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.95;
+    margin-bottom: 40px;
 }
 
 .chaotic-gallery {
     position: absolute;
     width: 100%;
-    height: 440px;
-    max-width: 950px;
+    height: 520px;
+    max-width: 1000px;
     pointer-events: none;
 }
 
 .chaotic-photo {
     position: absolute;
     background: #fff;
-    padding: 10px 10px 30px 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    padding: 10px 10px 32px 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
     border-radius: 2px;
     pointer-events: auto;
     transition: transform 0.3s ease;
 }
 
 .chaotic-photo:hover {
-    transform: scale(1.05) rotate(0deg) !important;
+    transform: scale(1.06) rotate(0deg) !important;
     z-index: 20;
 }
 
 .chaotic-photo img {
     display: block;
     width: 100%;
-    height: 150px;
+    height: 170px;
     object-fit: cover;
 }
 
-/* 5枚の写真のバラバラな配置（ポラロイド風） */
+/* 5枚の写真をよりダイナミックに配置 */
 .cp-1 {
-    width: 190px;
-    top: -10px;
-    left: 4%;
-    transform: rotate(-7deg);
+    width: 220px;
+    top: 10px;
+    left: 2%;
+    transform: rotate(-8deg);
 }
 .cp-2 {
-    width: 210px;
-    top: 10px;
-    right: 6%;
-    transform: rotate(6deg);
+    width: 240px;
+    top: 30px;
+    right: 3%;
+    transform: rotate(7deg);
 }
 .cp-3 {
-    width: 170px;
-    bottom: 0px;
-    left: 18%;
-    transform: rotate(4deg);
+    width: 200px;
+    bottom: 20px;
+    left: 14%;
+    transform: rotate(5deg);
 }
 .cp-4 {
-    width: 200px;
-    bottom: 0px;
-    right: 20%;
-    transform: rotate(-5deg);
+    width: 230px;
+    bottom: 10px;
+    right: 15%;
+    transform: rotate(-6deg);
 }
 .cp-5 {
-    width: 180px;
-    top: 80px;
-    left: 41%;
-    transform: rotate(-2deg);
+    width: 210px;
+    top: 130px;
+    left: 38%;
+    transform: rotate(-3deg);
 }
 
 .welcome-scroll-hint {
     position: absolute;
-    bottom: -20px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -393,15 +382,15 @@ body.open .hero-overlay {
     }
     .welcome-space {
         height: 75vh;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
     .chaotic-gallery {
-        height: 340px;
+        height: 360px;
     }
-    .cp-1 { width: 120px; left: 2%; top: 10px; }
-    .cp-2 { width: 130px; right: 2%; top: 0px; }
-    .cp-3 { width: 110px; bottom: 0px; left: 8%; }
-    .cp-4 { width: 120px; bottom: 0px; right: 8%; }
-    .cp-5 { width: 110px; top: 120px; left: 34%; }
-    .chaotic-photo img { height: 100px; }
+    .cp-1 { width: 130px; left: 2%; top: 10px; }
+    .cp-2 { width: 140px; right: 2%; top: 0px; }
+    .cp-3 { width: 120px; bottom: 10px; left: 6%; }
+    .cp-4 { width: 130px; bottom: 10px; right: 6%; }
+    .cp-5 { width: 120px; top: 110px; left: 32%; }
+    .chaotic-photo img { height: 110px; }
 }
