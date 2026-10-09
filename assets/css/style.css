@@ -18,6 +18,8 @@ body {
     color: #e2e8f0;
     font-family: 'Noto Serif JP', serif;
     overflow-x: hidden;
+    /* スクロール量を確保してしっかり襖が開くようにする */
+    height: 300vh; 
 }
 
 /* 最初のファーストビュー（白い木枠の襖画面） */
@@ -29,7 +31,7 @@ body {
     height: 100vh;
     z-index: 100;
     display: flex;
-    transition: opacity 0.5s ease;
+    pointer-events: none; /* 襖が開いた後に下の要素をクリックできるようにする */
 }
 
 .fusuma-panel {
@@ -44,6 +46,7 @@ body {
     box-shadow: inset 0 0 40px rgba(0,0,0,0.15);
     transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
     overflow: hidden;
+    pointer-events: auto;
 }
 
 .fusuma-left {
@@ -160,29 +163,29 @@ body.open .hero-overlay {
     opacity: 0;
 }
 
+/* メインコンテンツを画面の最上部に配置し、無駄な空白をなくす */
 .main-container {
-    position: relative;
-    min-height: 200vh;
-    padding: 0 40px 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 40px 100px;
     max-width: 1200px;
     margin: 0 auto;
-    z-index: 10; /* 襖（z-index: 100）の下に隠れるように設定 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-/* 襖を開けるための余白スペース */
-.spacer {
-    height: 100vh;
-}
-
-/* 「日々の記録」と5枚の雑多な写真のウェルカムスペース */
+/* 「日々の記録」と5枚の雑多な写真のウェルカムスペース（最初からトップに配置） */
 .welcome-space {
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 
 .welcome-title {
@@ -259,7 +262,7 @@ body.open .hero-overlay {
 
 .welcome-scroll-hint {
     position: absolute;
-    bottom: -30px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -386,11 +389,11 @@ body.open .hero-overlay {
         font-size: 5.5rem;
     }
     .main-container {
-        padding: 0 20px 60px;
+        padding: 20px 20px 60px;
     }
     .welcome-space {
-        height: 70vh;
-        margin-bottom: 60px;
+        height: 75vh;
+        margin-bottom: 40px;
     }
     .chaotic-gallery {
         height: 340px;
