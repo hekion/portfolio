@@ -104,7 +104,6 @@ body.open .fusuma-right {
     font-size: 8rem;
     letter-spacing: 0.6em;
     color: #111;
-    /* 金色の影を多重に重ねて強力に発光させ、襖の縁や背景でも黒文字がハッキリ見えるように調整 */
     text-shadow: 
         0 0 8px rgba(197, 160, 89, 0.9),
         0 0 16px rgba(197, 160, 89, 0.7),
@@ -113,7 +112,7 @@ body.open .fusuma-right {
         2px 2px 12px rgba(197, 160, 89, 0.8);
 }
 
-/* 襖の縁にかかっても見やすいように背景と余白をつけたスクロール案内 */
+/* 襖のスクロール案内（ご要望の英語表記スタイル） */
 .scroll-indicator {
     position: absolute;
     bottom: 40px;
@@ -132,14 +131,14 @@ body.open .fusuma-right {
 
 .scroll-text {
     color: #222;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     letter-spacing: 0.25em;
     font-weight: 500;
 }
 
 .scroll-arrow {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-right: 2px solid #222;
     border-bottom: 2px solid #222;
     transform: rotate(45deg);
@@ -164,33 +163,28 @@ body.open .hero-overlay {
 
 .main-container {
     position: relative;
-    min-height: 200vh;
-    padding: 80px 40px;
+    padding: 60px 40px 100px;
     max-width: 1200px;
     margin: 0 auto;
     z-index: 150;
 }
 
-.spacer {
-    height: 120vh;
-}
-
-/* 「日々の記録」と5枚の雑多な写真のウェルカムスペース */
+/* 「日々の記録」と5枚の雑多な写真のウェルカムスペース（襖が開いたらすぐ目の前に広がる） */
 .welcome-space {
-    height: 90vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-bottom: 140px;
+    margin-bottom: 80px;
 }
 
 .welcome-title {
     font-size: 1.35rem;
     letter-spacing: 0.4em;
     color: var(--gold-color);
-    margin-bottom: 90px;
+    margin-bottom: 70px;
     font-weight: 400;
     text-align: center;
     opacity: 0.95;
@@ -199,7 +193,7 @@ body.open .hero-overlay {
 .chaotic-gallery {
     position: absolute;
     width: 100%;
-    height: 480px;
+    height: 440px;
     max-width: 950px;
     pointer-events: none;
 }
@@ -222,45 +216,45 @@ body.open .hero-overlay {
 .chaotic-photo img {
     display: block;
     width: 100%;
-    height: 160px;
+    height: 150px;
     object-fit: cover;
 }
 
-/* 5枚の写真をバラバラに配置（雑多なポラロイド風） */
+/* 5枚の写真のバラバラな配置（ポラロイド風） */
 .cp-1 {
-    width: 200px;
-    top: 0px;
+    width: 190px;
+    top: -10px;
     left: 4%;
     transform: rotate(-7deg);
 }
 .cp-2 {
-    width: 220px;
-    top: 20px;
+    width: 210px;
+    top: 10px;
     right: 6%;
     transform: rotate(6deg);
 }
 .cp-3 {
-    width: 180px;
-    bottom: 10px;
+    width: 170px;
+    bottom: 0px;
     left: 18%;
     transform: rotate(4deg);
 }
 .cp-4 {
-    width: 210px;
+    width: 200px;
     bottom: 0px;
     right: 20%;
     transform: rotate(-5deg);
 }
 .cp-5 {
-    width: 190px;
-    top: 100px;
+    width: 180px;
+    top: 80px;
     left: 41%;
     transform: rotate(-2deg);
 }
 
 .welcome-scroll-hint {
     position: absolute;
-    bottom: -40px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -290,9 +284,9 @@ body.open .hero-overlay {
     justify-content: center;
     gap: 15px;
     margin-bottom: 50px;
-    flex-wrap: wrap;
     position: relative;
     z-index: 151;
+    flex-wrap: wrap;
 }
 
 .filter-btn {
@@ -387,15 +381,19 @@ body.open .hero-overlay {
         font-size: 5.5rem;
     }
     .main-container {
-        padding: 40px 20px;
+        padding: 30px 20px;
+    }
+    .welcome-space {
+        height: 70vh;
+        margin-bottom: 60px;
     }
     .chaotic-gallery {
-        height: 380px;
+        height: 340px;
     }
-    .cp-1 { width: 130px; left: 2%; top: 10px; }
-    .cp-2 { width: 140px; right: 2%; top: 0px; }
-    .cp-3 { width: 120px; bottom: 10px; left: 8%; }
-    .cp-4 { width: 130px; bottom: 10px; right: 8%; }
-    .cp-5 { width: 120px; top: 120px; left: 34%; }
-    .chaotic-photo img { height: 110px; }
+    .cp-1 { width: 120px; left: 2%; top: 10px; }
+    .cp-2 { width: 130px; right: 2%; top: 0px; }
+    .cp-3 { width: 110px; bottom: 0px; left: 8%; }
+    .cp-4 { width: 120px; bottom: 0px; right: 8%; }
+    .cp-5 { width: 110px; top: 100px; left: 34%; }
+    .chaotic-photo img { height: 100px; }
 }
