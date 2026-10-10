@@ -9,12 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* メインコンテナの余分な高さをなくし、コンテンツ量に応じて自然に伸びるようにする */
+        /* --- 根本的な高さを強制リセットして空白を消す --- */
+        html, body {
+            height: auto !important;
+            min-height: 100% !important;
+            overflow-x: hidden;
+        }
+        body {
+            display: block !important;
+        }
         .main-container {
-            position: relative;
-            margin-top: 40px;
-            margin-bottom: 60px;
-            min-height: auto;
+            position: relative !important;
+            margin-top: 40px !important;
+            margin-bottom: 40px !important;
+            min-height: auto !important;
+            height: auto !important;
         }
 
         .album-view {
