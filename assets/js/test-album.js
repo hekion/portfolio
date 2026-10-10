@@ -1,26 +1,26 @@
-// アルバムデータ（各写真の向き情報を保持）
+// アルバムデータ（「タイトル」「日付」「枚数」に絞った構成）
 const albumData = [
     {
         id: 'kawasaki-20260214',
-        title: '川崎フロンターレ vs 〇〇 (2026.02.14)',
+        title: '川崎フロンターレ vs 横浜F・マリノス',
+        date: '2026.02.14',
         category: 'photo',
         categoryName: '写真（イベント）',
         coverImage: 'assets/images/daily/sample1.jpg',
-        tool: 'Sony α7C II',
         photos: [
-            { src: 'assets/images/daily/sample1.jpg', orientation: 'landscape' }, // 横長
-            { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' },  // 縦長
-            { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' }, // 横長
-            { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' }   // 縦長
+            { src: 'assets/images/daily/sample1.jpg', orientation: 'landscape' },
+            { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' },
+            { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' },
+            { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' }
         ]
     },
     {
         id: 'health-festa',
-        title: '健康長寿フェスタ',
+        title: '健康長寿フェスタ 撮影レポート',
+        date: '2026.05.20',
         category: 'photo',
         categoryName: '写真（イベント）',
         coverImage: 'assets/images/daily/sample2.jpg',
-        tool: 'Sony α7C II',
         photos: [
             { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' },
             { src: 'assets/images/daily/sample5.jpg', orientation: 'landscape' },
@@ -29,11 +29,11 @@ const albumData = [
     },
     {
         id: 'kusatsu-trip',
-        title: '草津温泉旅行 2026.09',
+        title: '草津温泉 旅の記録',
+        date: '2026.09.05',
         category: 'photo',
         categoryName: '写真（旅行）',
         coverImage: 'assets/images/daily/sample3.jpg',
-        tool: 'Sony α7C II',
         photos: [
             { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' },
             { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' },
@@ -62,10 +62,15 @@ function renderAlbumList() {
             <div class="thumbnail-wrapper" data-album-id="${album.id}">
                 <img src="${album.coverImage}" alt="${album.title}">
             </div>
-            <div class="work-info">
-                <span class="category-tag">${album.categoryName}</span>
-                <h3>${album.title}</h3>
-                <p class="tool-text">${album.tool} (写真 ${album.photos.length}枚)</p>
+            <div class="work-info" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <span class="category-tag">${album.categoryName}</span>
+                    <h3 style="margin-bottom: 4px;">${album.title}</h3>
+                    <p class="tool-text" style="color: rgba(255,255,255,0.7);">${album.date}</p>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--gold-color); letter-spacing: 0.05em; white-space: nowrap;">
+                    ${album.photos.length}枚
+                </div>
             </div>
         `;
 
@@ -94,7 +99,7 @@ function bindAlbumClickEvents() {
 function showAlbumDetail(album) {
     galleryMainView.style.display = 'none';
     albumDetailView.classList.add('active');
-    albumDetailTitle.textContent = album.title;
+    albumDetailTitle.textContent = `${album.title} (${album.date})`;
     
     albumPhotosGrid.innerHTML = '';
 
