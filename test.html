@@ -9,9 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
+        /* メインコンテナの余分な高さをなくし、コンテンツ量に応じて自然に伸びるようにする */
+        .main-container {
+            position: relative;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            min-height: auto;
+        }
+
         .album-view {
             display: none;
-            margin-top: 20px;
         }
         .album-view.active {
             display: block;
@@ -39,10 +46,10 @@
             padding-bottom: 10px;
         }
 
-        /* --- サムネイルの比率を正確な 3:2 に固定し、切れずに収める設定 --- */
+        /* サムネイルの比率を正確な 3:2 に固定 */
         .thumbnail-wrapper {
             width: 100%;
-            aspect-ratio: 3 / 2; /* 枠自体を確実に 3:2 の比率にする */
+            aspect-ratio: 3 / 2;
             overflow: hidden;
             background: #000;
             cursor: pointer;
@@ -51,7 +58,7 @@
         .thumbnail-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* トリミングせず、全体を綺麗に収める（余白が出た場合は黒背景になります） */
+            object-fit: contain;
             transition: transform 0.5s ease;
         }
 
@@ -59,7 +66,7 @@
             transform: scale(1.05);
         }
 
-        /* --- パズル風（Masonryライク）レイアウト --- */
+        /* パズル風レイアウト */
         .album-photos-grid {
             column-count: 3;
             column-gap: 20px;
@@ -92,7 +99,7 @@
             transform: scale(1.03);
         }
 
-        /* スマホ向けのレイアウト調整 */
+        /* スマホ向け調整 */
         @media screen and (max-width: 768px) {
             .album-photos-grid {
                 column-count: 2;
@@ -106,7 +113,7 @@
 </head>
 <body>
 
-    <main class="main-container" style="position: relative; margin-top: 40px;">
+    <main class="main-container">
         
         <!-- アルバム一覧ビュー -->
         <div id="galleryMainView">
@@ -121,9 +128,7 @@
         <div id="albumDetailView" class="album-view">
             <button class="back-btn" id="backToGallery">&larr; 一覧に戻る</button>
             <h2 class="album-title-area" id="albumDetailTitle">アルバム名</h2>
-            <div class="album-photos-grid" id="albumPhotosGrid">
-                <!-- パズル状に並ぶ写真たち -->
-            </div>
+            <div class="album-photos-grid" id="albumPhotosGrid"></div>
         </div>
 
     </main>
@@ -134,7 +139,6 @@
         <img class="modal-content" id="modalImg" alt="拡大画像">
     </div>
 
-    <!-- 実験用JS -->
     <script src="assets/js/test-album.js"></script>
 </body>
 </html>
