@@ -1,9 +1,9 @@
-// アルバムデータ（「タイトル」「日付」「枚数」に絞った構成）
+// アルバムデータ
 const albumData = [
     {
         id: 'kawasaki-20260214',
         title: '川崎フロンターレ vs 横浜F・マリノス',
-        date: '2026.02.04',
+        date: '2026.02.14',
         category: 'photo',
         categoryName: '写真（イベント）',
         coverImage: 'assets/images/daily/sample1.jpg',
@@ -103,13 +103,11 @@ function showAlbumDetail(album) {
     
     albumPhotosGrid.innerHTML = '';
 
-    // パズル状に写真を配置
     album.photos.forEach(photo => {
         const photoItem = document.createElement('div');
         photoItem.className = `album-photo-item ${photo.orientation}`;
         photoItem.innerHTML = `<img src="${photo.src}" alt="写真">`;
 
-        // クリックで拡大
         photoItem.onclick = () => {
             modalImg.src = photo.src;
             modal.classList.add('show');
@@ -117,12 +115,18 @@ function showAlbumDetail(album) {
 
         albumPhotosGrid.appendChild(photoItem);
     });
+
+    // ★ アルバムを開いたときにページの一番上にスクロール
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // 一覧に戻るボタン
 backToGalleryBtn.onclick = () => {
     albumDetailView.classList.remove('active');
     galleryMainView.style.display = 'block';
+
+    // ★ 一覧に戻ったときもページの一番上にスクロール
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 // 初期描画
