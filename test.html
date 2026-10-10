@@ -39,9 +39,29 @@
             padding-bottom: 10px;
         }
 
+        /* --- サムネイルの比率を正確な 3:2 に固定し、切れずに収める設定 --- */
+        .thumbnail-wrapper {
+            width: 100%;
+            aspect-ratio: 3 / 2; /* 枠自体を確実に 3:2 の比率にする */
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .thumbnail-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* トリミングせず、全体を綺麗に収める（余白が出た場合は黒背景になります） */
+            transition: transform 0.5s ease;
+        }
+
+        .work-item:hover .thumbnail-wrapper img {
+            transform: scale(1.05);
+        }
+
         /* --- パズル風（Masonryライク）レイアウト --- */
         .album-photos-grid {
-            column-count: 3; /* PCでの列数 */
+            column-count: 3;
             column-gap: 20px;
         }
 
@@ -61,7 +81,6 @@
             border-color: var(--gold-color);
         }
 
-        /* 横長・縦長をそのまま活かす（object-fitではなく幅100%で自然な高さを維持） */
         .album-photo-item img {
             width: 100%;
             height: auto;
@@ -76,7 +95,7 @@
         /* スマホ向けのレイアウト調整 */
         @media screen and (max-width: 768px) {
             .album-photos-grid {
-                column-count: 2; /* スマホでは2列 */
+                column-count: 2;
                 column-gap: 12px;
             }
             .album-photo-item {
