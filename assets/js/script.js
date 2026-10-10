@@ -26,28 +26,36 @@ const allWorks = [
 ];
 
 const galleryGrid = document.querySelector('.gallery-grid');
+const subFilterContainer = document.getElementById('subFilterContainer');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
+
+let currentMainFilter = 'all';
+let currentSubFilter = 'all';
 
 // ギャラリーを描画する関数
-function renderGallery(filter = 'all') {
+function renderGallery() {
     galleryGrid.innerHTML = '';
     
     allWorks.forEach(work => {
         let isHidden = false;
 
-        if (filter === 'all') {
+        if (currentMainFilter === 'all') {
             // 初期表示はチラシとWebのみ表示
             isHidden = (work.category !== 'chirashi' && work.category !== 'web');
-        } else if (filter.startsWith('photo-')) {
-            // 写真のサブカテゴリで絞り込み
-            const sub = filter.replace('photo-', '');
-            if (work.category === 'photo' && work.subCategory === sub) {
+        } else if (currentMainFilter === 'photo') {
+            // 写真が選ばれている場合
+            if (work.category === 'photo') {
+                if (currentSubFilter !== 'all' && work.subCategory !== currentSubFilter) {
+                    return; // 小カテゴリが一致しないものはスキップ
+                }
                 isHidden = false;
             } else {
-                return; // 該当しないものはスキップ
+                return; // 写真以外は非表示
             }
         } else {
-            // その他のカテゴリ
-            if (work.category !== filter) return;
+            // その他のメインカテゴリ
+            if (work.category !== currentMainFilter) return;
         }
 
         const workItem = document.createElement('div');
@@ -88,23 +96,44 @@ function renderGallery(filter = 'all') {
     bindModalEvents();
 }
 
-// 初期表示
-renderGallery('all');
+// 初期描画
+renderGallery();
 
-// 2. 絞り込みボタンの制御
-const filterButtons = document.querySelectorAll('.filter-btn');
-
+// 2. メインフィルターボタンの制御
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.getAttribute('data-filter');
-        renderGallery(filter);
+        currentMainFilter = btn.getAttribute('data-filter');
+
+        // 「写真」が選ばれた時だけ小カテゴリボタンを表示、それ以外は隠す
+        if (currentMainFilter === 'photo') {
+            subFilterContainer.classList.add('show');
+            // 写真切り替え時は小カテゴリを「すべて（写真）」にリセット
+            subFilterButtons.forEach(b => b.classList.remove('active'));
+            subFilterButtons[0].classList.add('active');
+            currentSubFilter = 'all';
+        } else {
+            subFilterContainer.classList.remove('show');
+        }
+
+        renderGallery();
     });
 });
 
-// 3. 画像クリック時の拡大表示（モーダル）機能
+// 3. 写真の小カテゴリボタンの制御
+subFilterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        subFilterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentSubFilter = btn.getAttribute('data-sub');
+        renderGallery();
+    });
+});
+
+// 4. 画像クリック時の拡大表示（モーダル）機能
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
 const modalClose = document.querySelector('.modal-close');
