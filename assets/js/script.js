@@ -36,7 +36,7 @@ const modalClose = document.querySelector('.modal-close');
 const thumbnailWrappers = document.querySelectorAll('.thumbnail-wrapper');
 
 thumbnailWrappers.forEach(wrapper => {
-    wrapper.addEventListener('click', () => {
+    wrapper.addEventListener('click', (e) => {
         // ウェブサイトなど、親にリンク（aタグ）があるものはモーダルを開かず通常遷移させる
         if (wrapper.closest('a')) {
             return;
@@ -44,8 +44,8 @@ thumbnailWrappers.forEach(wrapper => {
 
         const img = wrapper.querySelector('img');
         if (img && img.src) {
-            modal.classList.add('show');
             modalImg.src = img.src;
+            modal.classList.add('show');
         }
     });
 });
