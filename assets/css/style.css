@@ -213,15 +213,50 @@ body.open .hero-overlay {
 .chaotic-photo img {
     display: block;
     width: 100%;
-    height: 170px;
+    height: 100%;
     object-fit: cover;
 }
 
-.cp-1 { width: 220px; top: 10px; left: 2%; transform: rotate(-8deg); }
-.cp-2 { width: 240px; top: 30px; right: 3%; transform: rotate(7deg); }
-.cp-3 { width: 200px; bottom: 20px; left: 14%; transform: rotate(5deg); }
-.cp-4 { width: 230px; bottom: 10px; right: 15%; transform: rotate(-6deg); }
-.cp-5 { width: 210px; top: 130px; left: 38%; transform: rotate(-3deg); }
+/* --- 横長（3:2）4枚 & 縦長（2:3）1枚 --- */
+.cp-1 { 
+    width: 240px; 
+    height: 160px; 
+    top: 10px; 
+    left: 2%; 
+    transform: rotate(-8deg); 
+}
+
+.cp-2 { 
+    width: 255px; 
+    height: 170px; 
+    top: 30px; 
+    right: 3%; 
+    transform: rotate(7deg); 
+}
+
+.cp-3 { 
+    width: 225px; 
+    height: 150px; 
+    bottom: 20px; 
+    left: 12%; 
+    transform: rotate(5deg); 
+}
+
+.cp-4 { 
+    width: 240px; 
+    height: 160px; 
+    bottom: 10px; 
+    right: 12%; 
+    transform: rotate(-6deg); 
+}
+
+.cp-5 { 
+    width: 170px; 
+    height: 255px; 
+    top: 100px; 
+    left: 41%; 
+    transform: rotate(-3deg); 
+}
 
 .welcome-scroll-hint {
     position: absolute;
@@ -279,7 +314,7 @@ body.open .hero-overlay {
 
 /* 写真選択時のみ表示する小カテゴリボタン */
 .sub-filter-container {
-    display: none; /* 初期状態は非表示 */
+    display: none;
     justify-content: center;
     gap: 10px;
     margin-bottom: 50px;
@@ -435,12 +470,11 @@ body.open .hero-overlay {
         margin-bottom: 30px;
     }
     .chaotic-gallery {
-        height: 360px;
+        height: 380px;
     }
-    .cp-1 { width: 130px; left: 2%; top: 10px; }
-    .cp-2 { width: 140px; right: 2%; top: 0px; }
-    .cp-3 { width: 120px; bottom: 10px; left: 6%; }
-    .cp-4 { width: 130px; bottom: 10px; right: 6%; }
-    .cp-5 { width: 120px; top: 110px; left: 32%; }
-    .chaotic-photo img { height: 110px; }
+    .cp-1 { width: 150px; height: 100px; left: 1%; top: 10px; }
+    .cp-2 { width: 150px; height: 100px; right: 1%; top: 0px; }
+    .cp-3 { width: 135px; height: 90px; bottom: 10px; left: 4%; }
+    .cp-4 { width: 135px; height: 90px; bottom: 10px; right: 4%; }
+    .cp-5 { width: 110px; height: 165px; top: 90px; left: 34%; }
 }
