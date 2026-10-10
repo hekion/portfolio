@@ -8,7 +8,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 全データを統合
+// 全データを統合してメタ情報を付与
 const allWorks = [
     ...chirashiData.map(item => ({ ...item, category: 'chirashi', categoryName: 'チラシ・POP' })),
     ...photoData.map(item => ({ 
@@ -33,33 +33,59 @@ const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
 let currentMainFilter = 'all';
 let currentSubFilter = 'all';
 
+// 配列をランダムにシャッフルする関数（Fisher-Yatesアルゴリズム）
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 // ギャラリーを描画する関数
 function renderGallery() {
     galleryGrid.innerHTML = '';
     
-    allWorks.forEach(work => {
-        let isHidden = false;
+    let worksToDisplay = [];
 
-        if (currentMainFilter === 'all') {
-            // 初期表示はチラシとWebのみ表示
-            isHidden = (work.category !== 'chirashi' && work.category !== 'web');
-        } else if (currentMainFilter === 'photo') {
-            // 写真が選ばれている場合
-            if (work.category === 'photo') {
-                if (currentSubFilter !== 'all' && work.subCategory !== currentSubFilter) {
-                    return; // 小カテゴリが一致しないものはスキップ
-                }
-                isHidden = false;
-            } else {
-                return; // 写真以外は非表示
-            }
+    if (currentMainFilter === 'all') {
+        // 「すべて」のとき：カテゴリごとにシャッフルして最大10作品ずつ抽出し、最後に全体を混ぜる
+        const categories = ['chirashi', 'photo', 'thumb', 'video', 'web'];
+        
+        categories.forEach(cat => {
+            const catWorks = allWorks.filter(w => w.category === cat);
+            const shuffledCatWorks = shuffleArray(catWorks);
+            const limitedWorks = shuffledCatWorks.slice(0, 10); // 最大10作品
+            worksToDisplay.push(...limitedWorks);
+        });
+
+        // 抽出された全カテゴリの作品をさらにシャッフルしてごちゃ混ぜにする
+        worksToDisplay = shuffleArray(worksToDisplay);
+
+    } else if (currentMainFilter === 'photo') {
+        // 「写真」大カテゴリが選ばれている場合
+        const photoWorks = allWorks.filter(w => w.category === 'photo');
+        
+        if (currentSubFilter === 'all') {
+            // 写真の「すべて」：全写真の中からランダムにシャッフルして表示
+            worksToDisplay = shuffleArray(photoWorks);
         } else {
-            // その他のメインカテゴリ
-            if (work.category !== currentMainFilter) return;
+            // 写真の小カテゴリ（風景、食べ物など）：該当するものを抽出してシャッフル
+            const subWorks = photoWorks.filter(w => w.subCategory === currentSubFilter);
+            worksToDisplay = shuffleArray(subWorks);
         }
 
+    } else {
+        // その他の大カテゴリ（チラシ、サムネイル、動画、ウェブ）
+        const categoryWorks = allWorks.filter(w => w.category === currentMainFilter);
+        worksToDisplay = shuffleArray(categoryWorks);
+    }
+
+    // カードを生成して配置
+    worksToDisplay.forEach(work => {
         const workItem = document.createElement('div');
-        workItem.className = `work-item ${isHidden ? 'hide' : ''}`;
+        workItem.className = 'work-item';
         workItem.setAttribute('data-category', work.category);
 
         let contentHTML = '';
@@ -110,7 +136,6 @@ filterButtons.forEach(btn => {
         // 「写真」が選ばれた時だけ小カテゴリボタンを表示、それ以外は隠す
         if (currentMainFilter === 'photo') {
             subFilterContainer.classList.add('show');
-            // 写真切り替え時は小カテゴリを「すべて（写真）」にリセット
             subFilterButtons.forEach(b => b.classList.remove('active'));
             subFilterButtons[0].classList.add('active');
             currentSubFilter = 'all';
