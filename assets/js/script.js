@@ -36,11 +36,10 @@ const modalClose = document.querySelector('.modal-close');
 const thumbnailWrappers = document.querySelectorAll('.thumbnail-wrapper');
 
 thumbnailWrappers.forEach(wrapper => {
-    wrapper.addEventListener('click', (e) => {
-        // 親要素にリンク（`a`タグ）がある場合は、ウェブサイト等の外部リンクなのでモーダルを開かない
-        const parentLink = wrapper.closest('a');
-        if (parentLink) {
-            return; // リンクの場合は通常の遷移に任せる
+    wrapper.addEventListener('click', () => {
+        // ウェブサイトなど、親にリンク（aタグ）があるものはモーダルを開かず通常遷移させる
+        if (wrapper.closest('a')) {
+            return;
         }
 
         const img = wrapper.querySelector('img');
@@ -51,15 +50,17 @@ thumbnailWrappers.forEach(wrapper => {
     });
 });
 
-// 閉じるボタンまたは背景クリックで閉じる
+// 閉じるボタンまたは背景クリックでモーダルを閉じる
 if (modalClose) {
     modalClose.addEventListener('click', () => {
         modal.classList.remove('show');
     });
 }
 
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('show');
-    }
-});
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+}
