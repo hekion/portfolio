@@ -3,7 +3,7 @@ const albumData = [
     {
         id: 'kawasaki-20260214',
         title: '川崎フロンターレ vs 横浜F・マリノス',
-        date: '2026.02.14',
+        date: '2026.02.04',
         category: 'photo',
         categoryName: '写真（イベント）',
         coverImage: 'assets/images/daily/sample1.jpg',
