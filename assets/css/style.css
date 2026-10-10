@@ -176,7 +176,7 @@ body.open .hero-overlay {
     z-index: 10;
 }
 
-/* 5枚の雑多な写真のウェルカムスペース（文言なしで写真でダイナミックに配置） */
+/* 5枚の雑多な写真のウェルカムスペース */
 .welcome-space {
     height: 95vh;
     display: flex;
@@ -217,37 +217,11 @@ body.open .hero-overlay {
     object-fit: cover;
 }
 
-/* 5枚の写真をよりダイナミックに配置 */
-.cp-1 {
-    width: 220px;
-    top: 10px;
-    left: 2%;
-    transform: rotate(-8deg);
-}
-.cp-2 {
-    width: 240px;
-    top: 30px;
-    right: 3%;
-    transform: rotate(7deg);
-}
-.cp-3 {
-    width: 200px;
-    bottom: 20px;
-    left: 14%;
-    transform: rotate(5deg);
-}
-.cp-4 {
-    width: 230px;
-    bottom: 10px;
-    right: 15%;
-    transform: rotate(-6deg);
-}
-.cp-5 {
-    width: 210px;
-    top: 130px;
-    left: 38%;
-    transform: rotate(-3deg);
-}
+.cp-1 { width: 220px; top: 10px; left: 2%; transform: rotate(-8deg); }
+.cp-2 { width: 240px; top: 30px; right: 3%; transform: rotate(7deg); }
+.cp-3 { width: 200px; bottom: 20px; left: 14%; transform: rotate(5deg); }
+.cp-4 { width: 230px; bottom: 10px; right: 15%; transform: rotate(-6deg); }
+.cp-5 { width: 210px; top: 130px; left: 38%; transform: rotate(-3deg); }
 
 .welcome-scroll-hint {
     position: absolute;
@@ -327,6 +301,7 @@ body.open .hero-overlay {
     height: 200px;
     overflow: hidden;
     background: #000;
+    cursor: pointer;
 }
 
 .thumbnail-wrapper img {
@@ -371,6 +346,48 @@ body.open .hero-overlay {
 
 .work-item.hide {
     display: none;
+}
+
+/* 画像拡大表示用モーダル（修正） */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: var(--gold-color);
 }
 
 @media screen and (max-width: 768px) {
