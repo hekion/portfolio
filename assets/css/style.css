@@ -254,7 +254,7 @@ body.open .hero-overlay {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 15;
     flex-wrap: wrap;
@@ -275,6 +275,39 @@ body.open .hero-overlay {
 .filter-btn:hover, .filter-btn.active {
     background-color: var(--gold-color);
     color: var(--bg-color);
+}
+
+/* 写真選択時のみ表示する小カテゴリボタン */
+.sub-filter-container {
+    display: none; /* 初期状態は非表示 */
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 15;
+    flex-wrap: wrap;
+}
+
+.sub-filter-container.show {
+    display: flex;
+}
+
+.sub-filter-btn {
+    background: transparent;
+    border: 1px dashed rgba(197, 160, 89, 0.6);
+    color: rgba(226, 232, 240, 0.8);
+    padding: 6px 14px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sub-filter-btn:hover, .sub-filter-btn.active {
+    background-color: rgba(197, 160, 89, 0.2);
+    border-color: var(--gold-color);
+    color: #fff;
 }
 
 .gallery-grid {
@@ -348,7 +381,7 @@ body.open .hero-overlay {
     display: none;
 }
 
-/* 画像拡大表示用モーダル（修正） */
+/* 画像拡大表示用モーダル */
 .modal {
     display: none;
     position: fixed;
