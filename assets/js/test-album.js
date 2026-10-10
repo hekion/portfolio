@@ -1,17 +1,17 @@
-// アルバムデータの構造サンプル（今後ここにイベント名や旅行名ごとの写真たちを格納していくイメージ）
+// アルバムデータ（各写真の向き情報を保持）
 const albumData = [
     {
         id: 'kawasaki-20260214',
         title: '川崎フロンターレ vs 〇〇 (2026.02.14)',
         category: 'photo',
         categoryName: '写真（イベント）',
-        coverImage: 'assets/images/daily/sample1.jpg', // 表紙のサムネイル
+        coverImage: 'assets/images/daily/sample1.jpg',
         tool: 'Sony α7C II',
-        photos: [ // アルバムの中身の写真たち（タイトルなし・画像のみ）
-            'assets/images/daily/sample1.jpg',
-            'assets/images/daily/sample2.jpg',
-            'assets/images/daily/sample3.jpg',
-            'assets/images/daily/sample4.jpg'
+        photos: [
+            { src: 'assets/images/daily/sample1.jpg', orientation: 'landscape' }, // 横長
+            { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' },  // 縦長
+            { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' }, // 横長
+            { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' }   // 縦長
         ]
     },
     {
@@ -22,9 +22,9 @@ const albumData = [
         coverImage: 'assets/images/daily/sample2.jpg',
         tool: 'Sony α7C II',
         photos: [
-            'assets/images/daily/sample2.jpg',
-            'assets/images/daily/sample5.jpg',
-            'assets/images/daily/sample1.jpg'
+            { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' },
+            { src: 'assets/images/daily/sample5.jpg', orientation: 'landscape' },
+            { src: 'assets/images/daily/sample1.jpg', orientation: 'landscape' }
         ]
     },
     {
@@ -35,11 +35,10 @@ const albumData = [
         coverImage: 'assets/images/daily/sample3.jpg',
         tool: 'Sony α7C II',
         photos: [
-            'assets/images/daily/sample3.jpg',
-            'assets/images/daily/sample4.jpg',
-            'assets/images/daily/sample5.jpg',
-            'assets/images/daily/sample1.jpg',
-            'assets/images/daily/sample2.jpg'
+            { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' },
+            { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' },
+            { src: 'assets/images/daily/sample5.jpg', orientation: 'portrait' },
+            { src: 'assets/images/daily/sample1.jpg', orientation: 'landscape' }
         ]
     }
 ];
@@ -51,7 +50,7 @@ const albumDetailTitle = document.getElementById('albumDetailTitle');
 const albumPhotosGrid = document.getElementById('albumPhotosGrid');
 const backToGalleryBtn = document.getElementById('backToGallery');
 
-// 1. アルバム一覧を描画
+// アルバム一覧を描画
 function renderAlbumList() {
     galleryGrid.innerHTML = '';
 
@@ -76,7 +75,7 @@ function renderAlbumList() {
     bindAlbumClickEvents();
 }
 
-// 2. アルバムをクリックしたときの挙動（中身ビューに切り替え）
+// アルバムクリック時のイベント
 function bindAlbumClickEvents() {
     const wrappers = galleryGrid.querySelectorAll('.thumbnail-wrapper');
     wrappers.forEach(wrapper => {
@@ -91,7 +90,7 @@ function bindAlbumClickEvents() {
     });
 }
 
-// アルバム詳細（中身の写真ずらり）を表示
+// アルバム詳細（パズル形式）を表示
 function showAlbumDetail(album) {
     galleryMainView.style.display = 'none';
     albumDetailView.classList.add('active');
@@ -99,15 +98,15 @@ function showAlbumDetail(album) {
     
     albumPhotosGrid.innerHTML = '';
 
-    // タイトルなしで画像だけがずらーっと並ぶ
-    album.photos.forEach(photoSrc => {
+    // パズル状に写真を配置
+    album.photos.forEach(photo => {
         const photoItem = document.createElement('div');
-        photoItem.className = 'album-photo-item';
-        photoItem.innerHTML = `<img src="${photoSrc}" alt="写真">`;
+        photoItem.className = `album-photo-item ${photo.orientation}`;
+        photoItem.innerHTML = `<img src="${photo.src}" alt="写真">`;
 
-        // 写真をクリックしたらモーダルで拡大
+        // クリックで拡大
         photoItem.onclick = () => {
-            modalImg.src = photoSrc;
+            modalImg.src = photo.src;
             modal.classList.add('show');
         };
 
@@ -115,7 +114,7 @@ function showAlbumDetail(album) {
     });
 }
 
-// 「一覧に戻る」ボタン
+// 一覧に戻るボタン
 backToGalleryBtn.onclick = () => {
     albumDetailView.classList.remove('active');
     galleryMainView.style.display = 'block';
@@ -124,7 +123,7 @@ backToGalleryBtn.onclick = () => {
 // 初期描画
 renderAlbumList();
 
-// モーダル関連の処理
+// モーダル
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
 const modalClose = document.querySelector('.modal-close');
