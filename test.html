@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>紺碧 | KONPEKI (アルバム実験)</title>
+    <title>紺碧 | KONPEKI (パズルレイアウト実験)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* アルバム中身ビュー用の追加スタイル */
         .album-view {
             display: none;
             margin-top: 20px;
@@ -39,29 +38,50 @@
             border-bottom: 1px solid rgba(197, 160, 89, 0.3);
             padding-bottom: 10px;
         }
-        /* アルバム中身の写真グリッド（タイトルなし、画像のみ） */
+
+        /* --- パズル風（Masonryライク）レイアウト --- */
         .album-photos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            column-count: 3; /* PCでの列数 */
+            column-gap: 20px;
         }
+
         .album-photo-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
             background: #000;
             border-radius: 4px;
             overflow: hidden;
             cursor: pointer;
-            height: 180px;
             border: 1px solid rgba(197, 160, 89, 0.2);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
+
         .album-photo-item:hover {
             transform: translateY(-4px);
             border-color: var(--gold-color);
         }
+
+        /* 横長・縦長をそのまま活かす（object-fitではなく幅100%で自然な高さを維持） */
         .album-photo-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .album-photo-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* スマホ向けのレイアウト調整 */
+        @media screen and (max-width: 768px) {
+            .album-photos-grid {
+                column-count: 2; /* スマホでは2列 */
+                column-gap: 12px;
+            }
+            .album-photo-item {
+                margin-bottom: 12px;
+            }
         }
     </style>
 </head>
@@ -69,7 +89,7 @@
 
     <main class="main-container" style="position: relative; margin-top: 40px;">
         
-        <!-- 通常のギャラリー一覧（アルバムの表紙が並ぶ） -->
+        <!-- アルバム一覧ビュー -->
         <div id="galleryMainView">
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">すべて</button>
@@ -78,12 +98,12 @@
             <div class="gallery-grid"></div>
         </div>
 
-        <!-- アルバムの中身を表示するビュー（クリックで切り替わる） -->
+        <!-- アルバムの中身ビュー（パズル形式） -->
         <div id="albumDetailView" class="album-view">
             <button class="back-btn" id="backToGallery">&larr; 一覧に戻る</button>
             <h2 class="album-title-area" id="albumDetailTitle">アルバム名</h2>
             <div class="album-photos-grid" id="albumPhotosGrid">
-                <!-- 中身の写真がここにタイトルなしでズラッと並ぶ -->
+                <!-- パズル状に並ぶ写真たち -->
             </div>
         </div>
 
@@ -95,7 +115,7 @@
         <img class="modal-content" id="modalImg" alt="拡大画像">
     </div>
 
-    <!-- 実験用のJS読み込み -->
+    <!-- 実験用JS -->
     <script src="assets/js/test-album.js"></script>
 </body>
 </html>
