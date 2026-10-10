@@ -11,7 +11,15 @@ window.addEventListener('scroll', () => {
 // 全データを統合
 const allWorks = [
     ...chirashiData.map(item => ({ ...item, category: 'chirashi', categoryName: 'チラシ・POP' })),
-    ...photoData.map(item => ({ ...item, category: 'photo', categoryName: '写真' })),
+    ...photoData.map(item => ({ 
+        ...item, 
+        category: 'photo', 
+        categoryName: item.sub === 'landscape' ? '写真（風景）' :
+                      item.sub === 'food' ? '写真（食べ物）' :
+                      item.sub === 'sports' ? '写真（スポーツ）' :
+                      item.sub === 'people' ? '写真（人物）' : '写真（その他）',
+        subCategory: item.sub 
+    })),
     ...thumbData.map(item => ({ ...item, category: 'thumb', categoryName: 'サムネイル' })),
     ...videoData.map(item => ({ ...item, category: 'video', categoryName: '動画編集' })),
     ...webData.map(item => ({ ...item, category: 'web', categoryName: 'ウェブサイト' }))
@@ -24,9 +32,23 @@ function renderGallery(filter = 'all') {
     galleryGrid.innerHTML = '';
     
     allWorks.forEach(work => {
-        // 初期表示('all')のときはチラシとWeb以外を隠す挙動を維持
-        let isHidden = (filter === 'all' && work.category !== 'chirashi' && work.category !== 'web');
-        if (filter !== 'all' && work.category !== filter) return;
+        let isHidden = false;
+
+        if (filter === 'all') {
+            // 初期表示はチラシとWebのみ表示
+            isHidden = (work.category !== 'chirashi' && work.category !== 'web');
+        } else if (filter.startsWith('photo-')) {
+            // 写真のサブカテゴリで絞り込み
+            const sub = filter.replace('photo-', '');
+            if (work.category === 'photo' && work.subCategory === sub) {
+                isHidden = false;
+            } else {
+                return; // 該当しないものはスキップ
+            }
+        } else {
+            // その他のカテゴリ
+            if (work.category !== filter) return;
+        }
 
         const workItem = document.createElement('div');
         workItem.className = `work-item ${isHidden ? 'hide' : ''}`;
