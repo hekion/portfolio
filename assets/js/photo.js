@@ -1,25 +1,29 @@
 const photoData = [
-    // --- アルバム形式のグループ（セクション付き） ---
+    // ① 川崎フロンターレ撮影
     {
         id: 'kawasaki-ft',
         title: '川崎フロンターレ 撮影記録',
-        date: '2026.02.16',
+        date: '2026.10.03',
         categoryName: '写真（スポーツ）',
-        image: 'assets/images/photo/miyagi-ten.jpg', // 表紙画像
+        image: 'assets/images/photo/pedro-romano.jpg',
         sub: 'sports',
         sections: [
             {
-                sectionTitle: '川崎 vs 京都',
-                date: '2026.02.16',
+                sectionTitle: 'vs U-21 東京ヴェルディ',
+                date: '2026.10.03',
+                photos: [] // 枠のみ（後から追加）
+            },
+            {
+                sectionTitle: 'vs 京都サンガF.C.',
+                date: '2026.08.15',
                 photos: [
-                    "assets/images/photo/miyagi-ten.jpg",
                     "assets/images/photo/pedro-romano.jpg",
-                    "assets/images/photo/soma-yuki.jpg"
+                    "assets/images/photo/miyagi-ten.jpg"
                 ]
             },
             {
-                sectionTitle: '川崎 vs 横浜FC',
-                date: '2025.12.25',
+                sectionTitle: 'vs FC町田ゼルビア',
+                date: '2026.05.17',
                 photos: [
                     "assets/images/photo/ito-tatsuya.jpg",
                     "assets/images/photo/yamaguchi-rui.jpg"
@@ -27,104 +31,279 @@ const photoData = [
             }
         ]
     },
+
+    // ② その他スポーツ撮影
     {
-        id: 'daily-snaps',
-        title: '日常・旅のスナップ断片',
-        date: '2026.09.05',
-        categoryName: '写真（日常）',
-        image: 'assets/images/photo/sensoji.jpg', // 表紙画像
-        sub: 'landscape',
+        id: 'other-sports',
+        title: 'その他スポーツ撮影',
+        date: '2026.09.12',
+        categoryName: '写真（スポーツ）',
+        image: 'assets/images/photo/yamasaki-yasuaki.jpg',
+        sub: 'sports',
         sections: [
             {
-                sectionTitle: '浅草散歩・その他',
-                date: '2026.09.05',
+                sectionTitle: '横浜F・マリノス vs FC町田ゼルビア',
+                date: '2026.09.12',
                 photos: [
-                    "assets/images/photo/sensoji.jpg",
-                    "assets/images/photo/sapporo-televitou.jpg",
-                    "assets/images/photo/susukino-01.jpg"
+                    "assets/images/photo/soma-yuki.jpg"
+                ]
+            },
+            {
+                sectionTitle: '横浜DeNAベイスターズ vs オリックス・バファローズ',
+                date: '2026.05.28',
+                photos: [
+                    "assets/images/photo/yamasaki-yasuaki.jpg",
+                    "assets/images/photo/yoshida-kousei.jpg",
+                    "assets/images/photo/azuma-katsuki.jpg"
                 ]
             }
         ]
     },
 
-    // --- 従来の単発作品データ ---
-    // 風景 (landscape)
-    { title: "札幌テレビ塔", image: "assets/images/photo/sapporo-televitou.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "浅草寺", image: "assets/images/photo/sensoji.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "すすきの", image: "assets/images/photo/susukino-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "すすきの夜景", image: "assets/images/photo/susukino-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "高松-小豆島フェリー", image: "assets/images/photo/takamatsu-syoudoshima.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "東寺（京都）", image: "assets/images/photo/toji-kyoto.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "羽田空港（ANAポケモン）", image: "assets/images/photo/haneda-anapokemon.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "羽田空港（デルタ機）", image: "assets/images/photo/haneda-delta.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "羽田空港（ソラシドエア）", image: "assets/images/photo/haneda-solaseed.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "羽田空港（AIRDO）", image: "assets/images/photo/haneda-airdorokon.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "羽田空港（ANA）", image: "assets/images/photo/haneda-ana.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "神宮外苑いちょう並木", image: "assets/images/photo/jingu-namiki.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "角川武蔵野ミュージアム 01", image: "assets/images/photo/kadokawa-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "角川武蔵野ミュージアム 02", image: "assets/images/photo/kadokawa-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "軽井沢", image: "assets/images/photo/karuizawa.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "河津桜", image: "assets/images/photo/kawazu.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "草津温泉 01", image: "assets/images/photo/kusatsu-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "草津温泉 02", image: "assets/images/photo/kusatsu-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "草津温泉 03", image: "assets/images/photo/kusatsu-03.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "京都の風景", image: "assets/images/photo/kyoto-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "八ッ場ダム 01", image: "assets/images/photo/yamba-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "八ッ場ダム 02", image: "assets/images/photo/yamba-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ゆにガーデン 01", image: "assets/images/photo/yuni-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ゆにガーデン 02", image: "assets/images/photo/yuni-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ゆにガーデン 03", image: "assets/images/photo/yuni-03.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ゆにガーデン 04", image: "assets/images/photo/yuni-04.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ゆにガーデン 05", image: "assets/images/photo/yuni-05.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "紫陽花（青）", image: "assets/images/photo/azisai-blue.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 01", image: "assets/images/photo/disneysea20260708-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 02", image: "assets/images/photo/disneysea20260708-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 03", image: "assets/images/photo/disneysea20260708-03.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 04", image: "assets/images/photo/disneysea20260708-04.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 05", image: "assets/images/photo/disneysea20260708-05.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 06", image: "assets/images/photo/disneysea20260708-06.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 07", image: "assets/images/photo/disneysea20260708-07.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 08", image: "assets/images/photo/disneysea20260708-08.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "ディズニーシー 09", image: "assets/images/photo/disneysea20260708-09.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "銀座時計塔", image: "assets/images/photo/ginza-tokei.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "HANA BIYORI 01", image: "assets/images/photo/hanabiyori-01.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "HANA BIYORI 02", image: "assets/images/photo/hanabiyori-02.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
-    { title: "花菖蒲", image: "assets/images/photo/hanasyoubu.jpg", tool: "Sony α7C II", categoryName: "写真（風景）", sub: "landscape" },
+    // ③ 人物
+    {
+        id: 'people-album',
+        title: '人物撮影',
+        date: '2026.08.15',
+        categoryName: '写真（人物）',
+        image: 'assets/images/photo/kamimura-hinano.jpg',
+        sub: 'people',
+        sections: [
+            {
+                sectionTitle: 'イベント撮影',
+                date: '2026.08.15',
+                photos: [
+                    "assets/images/photo/tomita-suzuka.jpg"
+                ]
+            },
+            {
+                sectionTitle: 'ポートレート撮影',
+                date: '2026.06.10',
+                photos: [
+                    "assets/images/photo/kageyama-yuka.jpg",
+                    "assets/images/photo/kageyama-yuka02.jpg"
+                ]
+            },
+            {
+                sectionTitle: 'アイドル・イベント',
+                date: '2026.05.28',
+                photos: [
+                    "assets/images/photo/kamimura-hinano.jpg",
+                    "assets/images/photo/kosaka-nao.jpg"
+                ]
+            }
+        ]
+    },
 
-    // 食べ物 (food)
-    { title: "シハチ鮮魚店 01", image: "assets/images/photo/shihachi-01.jpg", tool: "Sony α7C II", categoryName: "写真（食べ物）", sub: "food" },
-    { title: "シハチ鮮魚店 02", image: "assets/images/photo/shihachi-02.jpg", tool: "Sony α7C II", categoryName: "写真（食べ物）", sub: "food" },
+    // ④ 動物
+    {
+        id: 'animals',
+        title: '動物の記録',
+        date: '2026.01.01',
+        categoryName: '写真（その他）',
+        image: 'assets/images/photo/kawauso.jpg',
+        sub: 'other',
+        sections: [
+            {
+                sectionTitle: '動物たち',
+                date: '2026.01.01',
+                photos: [
+                    "assets/images/photo/kawauso.jpg"
+                ]
+            }
+        ]
+    },
 
-    // スポーツ (sports)
-    { title: "ペドロ・ホマーノ 選手", image: "assets/images/photo/pedro-romano.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "相馬勇紀 選手", image: "assets/images/photo/soma-yuki.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "伊藤達哉 選手", image: "assets/images/photo/ito-tatsuya.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "山口瑠伊 選手", image: "assets/images/photo/yamaguchi-rui.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "山﨑康晃 選手", image: "assets/images/photo/yamasaki-yasuaki.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "吉田輝星 選手", image: "assets/images/photo/yoshida-kousei.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "東克樹 選手", image: "assets/images/photo/azuma-katsuki.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "宮城天 選手", image: "assets/images/photo/miyagi-ten.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "ES CON FIELD 01", image: "assets/images/photo/escon-01.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
-    { title: "ES CON FIELD 02", image: "assets/images/photo/escon-02.jpg", tool: "Sony α7C II", categoryName: "写真（スポーツ）", sub: "sports" },
+    // ⑤ 食べ物
+    {
+        id: 'food-album',
+        title: '食べ物・グルメ',
+        date: '2026.01.01',
+        categoryName: '写真（食べ物）',
+        image: 'assets/images/photo/shihachi-02.jpg',
+        sub: 'food',
+        sections: [
+            {
+                sectionTitle: 'シハチ鮮魚店',
+                date: '2026.01.01',
+                photos: [
+                    "assets/images/photo/shihachi-01.jpg",
+                    "assets/images/photo/shihachi-02.jpg"
+                ]
+            }
+        ]
+    },
 
-    // 人物 (people)
-    { title: "富田鈴花 さん", image: "assets/images/photo/tomita-suzuka.jpg", tool: "Sony α7C II", categoryName: "写真（人物）", sub: "people" },
-    { title: "影山優佳 さん 01", image: "assets/images/photo/kageyama-yuka.jpg", tool: "Sony α7C II", categoryName: "写真（人物）", sub: "people" },
-    { title: "影山優佳 さん 02", image: "assets/images/photo/kageyama-yuka02.jpg", tool: "Sony α7C II", categoryName: "写真（人物）", sub: "people" },
-    { title: "上村ひなの さん", image: "assets/images/photo/kamimura-hinano.jpg", tool: "Sony α7C II", categoryName: "写真（人物）", sub: "people" },
-    { title: "小坂菜緒 さん", image: "assets/images/photo/kosaka-nao.jpg", tool: "Sony α7C II", categoryName: "写真（人物）", sub: "people" },
+    // ⑥ 風景(スポット)
+    {
+        id: 'spots-landscape',
+        title: '風景・スポット',
+        date: '2026.09.01',
+        categoryName: '写真（風景）',
+        image: 'assets/images/photo/jingu-namiki.jpg',
+        sub: 'landscape',
+        sections: [
+            {
+                sectionTitle: '2026.09 香川周辺',
+                date: '2026.09.01',
+                photos: [
+                    "assets/images/photo/takamatsu-syoudoshima.jpg"
+                ]
+            },
+            {
+                sectionTitle: '2026.08 北海道',
+                date: '2026.08.01',
+                photos: [
+                    "assets/images/photo/sapporo-televitou.jpg",
+                    "assets/images/photo/susukino-01.jpg",
+                    "assets/images/photo/susukino-02.jpg",
+                    "assets/images/photo/escon-01.jpg",
+                    "assets/images/photo/escon-02.jpg",
+                    "assets/images/photo/yuni-02.jpg",
+                    "assets/images/photo/yuni-03.jpg"
+                ]
+            },
+            {
+                sectionTitle: 'ディズニーシー',
+                date: '2026.07.08',
+                photos: [
+                    "assets/images/photo/disneysea20260708-01.jpg",
+                    "assets/images/photo/disneysea20260708-06.jpg",
+                    "assets/images/photo/disneysea20260708-07.jpg",
+                    "assets/images/photo/disneysea20260708-08.jpg",
+                    "assets/images/photo/disneysea20260708-09.jpg"
+                ]
+            },
+            {
+                sectionTitle: 'その他スポット',
+                date: '2026.01.01',
+                photos: [
+                    "assets/images/photo/sensoji.jpg",
+                    "assets/images/photo/ginza-tokei.jpg",
+                    "assets/images/photo/toji-kyoto.jpg",
+                    "assets/images/photo/jingu-namiki.jpg",
+                    "assets/images/photo/kadokawa-01.jpg",
+                    "assets/images/photo/kadokawa-02.jpg",
+                    "assets/images/photo/hanabiyori-01.jpg",
+                    "assets/images/photo/hanabiyori-02.jpg"
+                ]
+            }
+        ]
+    },
 
-    // その他 (other)
-    { title: "動物（カワウソ）", image: "assets/images/photo/kawauso.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（アンプティサッカー）", image: "assets/images/photo/tyouzyu-ampty.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（ボクシング）", image: "assets/images/photo/tyouzyu-boxing.JPG", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（ブラインドサッカー）", image: "assets/images/photo/tyouzyu-bs.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（DeNA関連）", image: "assets/images/photo/tyouzyu-dena.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（キッズ大陸）", image: "assets/images/photo/tyouzyu-kids.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（ラクロス）", image: "assets/images/photo/tyouzyu-lacrosse.JPG", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（Mizutori Sports Club）", image: "assets/images/photo/tyouzyu-mizutori.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（NEC 01）", image: "assets/images/photo/tyouzyu-nec.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（NEC 02）", image: "assets/images/photo/tyouzyu-nec02.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（NEC 03）", image: "assets/images/photo/tyouzyu-nec03.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" },
-    { title: "健康長寿フェス（プロレス）", image: "assets/images/photo/tyouzyu-prowres.jpg", tool: "Sony α7C II", categoryName: "写真（その他）", sub: "other" }
+    // ⑦ 各種旅行アルバム
+    {
+        id: 'travel-album',
+        title: '各種旅行アルバム',
+        date: '2026.01.01',
+        categoryName: '写真（風景）',
+        image: 'assets/images/photo/karuizawa.jpg',
+        sub: 'landscape',
+        sections: [
+            {
+                sectionTitle: '軽井沢旅行',
+                date: '2026.01.03',
+                photos: [
+                    "assets/images/photo/karuizawa.jpg"
+                ]
+            },
+            {
+                sectionTitle: '群馬旅行',
+                date: '2026.01.02',
+                photos: [
+                    "assets/images/photo/yamba-01.jpg",
+                    "assets/images/photo/yamba-02.jpg",
+                    "assets/images/photo/kusatsu-01.jpg",
+                    "assets/images/photo/kusatsu-02.jpg",
+                    "assets/images/photo/kusatsu-03.jpg"
+                ]
+            },
+            {
+                sectionTitle: '伊豆旅行',
+                date: '2026.01.01',
+                photos: [
+                    "assets/images/photo/kawazu.jpg"
+                ]
+            }
+        ]
+    },
+
+    // ⑧ イベント撮影
+    {
+        id: 'events-album',
+        title: 'イベント撮影',
+        date: '2026.06.14',
+        categoryName: '写真（その他）',
+        image: 'assets/images/photo/tyouzyu-prowres.jpg',
+        sub: 'other',
+        sections: [
+            {
+                sectionTitle: 'キッズスポーツフェスタ',
+                date: '2026.06.14',
+                photos: [
+                    "assets/images/photo/tyouzyu-ampty.jpg",
+                    "assets/images/photo/tyouzyu-boxing.JPG",
+                    "assets/images/photo/tyouzyu-bs.jpg",
+                    "assets/images/photo/tyouzyu-dena.jpg",
+                    "assets/images/photo/tyouzyu-kids.jpg",
+                    "assets/images/photo/tyouzyu-lacrosse.JPG",
+                    "assets/images/photo/tyouzyu-mizutori.jpg",
+                    "assets/images/photo/tyouzyu-nec.jpg",
+                    "assets/images/photo/tyouzyu-nec02.jpg",
+                    "assets/images/photo/tyouzyu-nec03.jpg",
+                    "assets/images/photo/tyouzyu-prowres.jpg"
+                ]
+            }
+        ]
+    },
+
+    // ⑨ 植物
+    {
+        id: 'plants-album',
+        title: '植物・自然',
+        date: '2026.01.01',
+        categoryName: '写真（風景）',
+        image: 'assets/images/photo/azisai-blue.jpg',
+        sub: 'landscape',
+        sections: [
+            {
+                sectionTitle: '植物コレクション',
+                date: '2026.01.01',
+                photos: [
+                    "assets/images/photo/yuni-01.jpg",
+                    "assets/images/photo/yuni-04.jpg",
+                    "assets/images/photo/yuni-05.jpg",
+                    "assets/images/photo/disneysea20260708-02.jpg",
+                    "assets/images/photo/disneysea20260708-03.jpg",
+                    "assets/images/photo/disneysea20260708-04.jpg",
+                    "assets/images/photo/disneysea20260708-05.jpg",
+                    "assets/images/photo/azisai-blue.jpg",
+                    "assets/images/photo/hanasyoubu.jpg"
+                ]
+            }
+        ]
+    },
+
+    // ⑩ その他
+    {
+        id: 'other-album',
+        title: 'その他・飛行機',
+        date: '2026.01.01',
+        categoryName: '写真（風景）',
+        image: 'assets/images/photo/haneda-airdorokon.jpg',
+        sub: 'landscape',
+        sections: [
+            {
+                sectionTitle: '飛行機',
+                date: '2026.01.01',
+                photos: [
+                    "assets/images/photo/haneda-anapokemon.jpg",
+                    "assets/images/photo/haneda-delta.jpg",
+                    "assets/images/photo/haneda-solaseed.jpg",
+                    "assets/images/photo/haneda-airdorokon.jpg",
+                    "assets/images/photo/haneda-ana.jpg"
+                ]
+            }
+        ]
+    }
 ];
