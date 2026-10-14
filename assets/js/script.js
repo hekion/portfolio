@@ -1,6 +1,10 @@
 // 1. スクロールに応じて白い襖が開くアニメーション
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
+    // アルバム詳細表示中はスクロールによる襖の開閉を無効化する
+    if (document.getElementById('albumDetailView').classList.contains('active')) {
+        return;
+    }
     if (scrollY > 5) {
         document.body.classList.add('open');
     } else {
@@ -24,40 +28,22 @@ const albumDetailTitle = document.getElementById('albumDetailTitle');
 const albumSectionsContainer = document.getElementById('albumSectionsContainer');
 const backToGalleryBtn = document.getElementById('backToGallery');
 
-const subFilterContainer = document.getElementById('subFilterContainer');
 const filterButtons = document.querySelectorAll('.filter-btn');
-const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
 
 let currentMainFilter = 'all';
-let currentSubFilter = 'all';
 
-// ギャラリーを描画する関数（シャッフルなしの順番表示）
+// ギャラリーを描画する関数
 function renderGallery() {
-    // アルバム詳細が表示中なら一覧に戻す
-    albumDetailView.classList.remove('active');
-    galleryMainView.style.display = 'block';
-
     galleryGrid.innerHTML = '';
     
     let worksToDisplay = [];
 
     if (currentMainFilter === 'all') {
-        // 「すべて」のときは各カテゴリの定義順にそのまま結合
         const categories = ['chirashi', 'photo', 'thumb', 'video', 'web'];
         categories.forEach(cat => {
             const catWorks = allWorks.filter(w => w.category === cat);
             worksToDisplay.push(...catWorks);
         });
-
-    } else if (currentMainFilter === 'photo') {
-        const photoWorks = allWorks.filter(w => w.category === 'photo');
-        
-        if (currentSubFilter === 'all') {
-            worksToDisplay = photoWorks;
-        } else {
-            worksToDisplay = photoWorks.filter(w => w.sub === currentSubFilter);
-        }
-
     } else {
         worksToDisplay = allWorks.filter(w => w.category === currentMainFilter);
     }
@@ -138,32 +124,11 @@ filterButtons.forEach(btn => {
         btn.classList.add('active');
 
         currentMainFilter = btn.getAttribute('data-filter');
-
-        if (currentMainFilter === 'photo') {
-            subFilterContainer.classList.add('show');
-            subFilterButtons.forEach(b => b.classList.remove('active'));
-            subFilterButtons[0].classList.add('active');
-            currentSubFilter = 'all';
-        } else {
-            subFilterContainer.classList.remove('show');
-        }
-
         renderGallery();
     });
 });
 
-// 3. 写真の小カテゴリボタンの制御
-subFilterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        subFilterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        currentSubFilter = btn.getAttribute('data-sub');
-        renderGallery();
-    });
-});
-
-// 4. アルバムクリック時のイベント
+// 3. アルバムクリック時のイベント
 function bindAlbumClickEvents() {
     const wrappers = galleryGrid.querySelectorAll('.thumbnail-wrapper[data-album-id]');
     wrappers.forEach(wrapper => {
@@ -182,8 +147,11 @@ function bindAlbumClickEvents() {
 function showAlbumDetail(album) {
     galleryMainView.style.display = 'none';
     albumDetailView.classList.add('active');
-    albumDetailTitle.textContent = album.title;
     
+    // アルバム表示中は強制的に襖を開いた状態にする（bodyのopenクラスを維持）
+    document.body.classList.add('open');
+
+    albumDetailTitle.textContent = album.title;
     albumSectionsContainer.innerHTML = '';
 
     // セクション内の日付を新しい順（降順）に並び替える
@@ -224,10 +192,12 @@ function showAlbumDetail(album) {
 backToGalleryBtn.onclick = () => {
     albumDetailView.classList.remove('active');
     galleryMainView.style.display = 'block';
+    
+    // 一覧に戻るときに一番上へスクロール（スクロール位置が0なので襖も閉じる状態に戻る）
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// 5. 画像拡大表示用モーダル機能
+// 4. 画像拡大表示用モーダル機能
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
 const modalClose = document.querySelector('.modal-close');
