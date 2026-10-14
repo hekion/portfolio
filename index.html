@@ -77,8 +77,17 @@
             <button class="sub-filter-btn" data-sub="other">その他</button>
         </div>
 
-        <!-- ギャラリー -->
-        <div class="gallery-grid"></div>
+        <!-- ギャラリー・アルバム一覧ビュー -->
+        <div id="galleryMainView">
+            <div class="gallery-grid"></div>
+        </div>
+
+        <!-- アルバムの中身ビュー（セクション＆グリッド形式） -->
+        <div id="albumDetailView" class="album-view">
+            <button class="back-btn" id="backToGallery">&larr; 一覧に戻る</button>
+            <h2 class="album-title-area" id="albumDetailTitle">アルバム名</h2>
+            <div id="albumSectionsContainer"></div>
+        </div>
     </main>
 
     <!-- 画像拡大表示用モーダル -->
