@@ -11,21 +11,19 @@ window.addEventListener('scroll', () => {
 // 全データを統合してメタ情報を付与
 const allWorks = [
     ...chirashiData.map(item => ({ ...item, category: 'chirashi', categoryName: 'チラシ・POP' })),
-    ...photoData.map(item => ({ 
-        ...item, 
-        category: 'photo', 
-        categoryName: item.sub === 'landscape' ? '写真（風景）' :
-                      item.sub === 'food' ? '写真（食べ物）' :
-                      item.sub === 'sports' ? '写真（スポーツ）' :
-                      item.sub === 'people' ? '写真（人物）' : '写真（その他）',
-        subCategory: item.sub 
-    })),
+    ...photoData.map(item => ({ ...item, category: 'photo' })),
     ...thumbData.map(item => ({ ...item, category: 'thumb', categoryName: 'サムネイル' })),
     ...videoData.map(item => ({ ...item, category: 'video', categoryName: '動画編集' })),
     ...webData.map(item => ({ ...item, category: 'web', categoryName: 'ウェブサイト' }))
 ];
 
 const galleryGrid = document.querySelector('.gallery-grid');
+const galleryMainView = document.getElementById('galleryMainView');
+const albumDetailView = document.getElementById('albumDetailView');
+const albumDetailTitle = document.getElementById('albumDetailTitle');
+const albumSectionsContainer = document.getElementById('albumSectionsContainer');
+const backToGalleryBtn = document.getElementById('backToGallery');
+
 const subFilterContainer = document.getElementById('subFilterContainer');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
@@ -45,39 +43,37 @@ function shuffleArray(array) {
 
 // ギャラリーを描画する関数
 function renderGallery() {
+    // アルバム詳細が表示中なら一覧に戻す
+    albumDetailView.classList.remove('active');
+    galleryMainView.style.display = 'block';
+
     galleryGrid.innerHTML = '';
     
     let worksToDisplay = [];
 
     if (currentMainFilter === 'all') {
-        // 「すべて」のとき：カテゴリごとにシャッフルして最大10作品ずつ抽出し、最後に全体を混ぜる
         const categories = ['chirashi', 'photo', 'thumb', 'video', 'web'];
         
         categories.forEach(cat => {
             const catWorks = allWorks.filter(w => w.category === cat);
             const shuffledCatWorks = shuffleArray(catWorks);
-            const limitedWorks = shuffledCatWorks.slice(0, 10); // 最大10作品
+            const limitedWorks = shuffledCatWorks.slice(0, 10);
             worksToDisplay.push(...limitedWorks);
         });
 
-        // 抽出された全カテゴリの作品をさらにシャッフルしてごちゃ混ぜにする
         worksToDisplay = shuffleArray(worksToDisplay);
 
     } else if (currentMainFilter === 'photo') {
-        // 「写真」大カテゴリが選ばれている場合
         const photoWorks = allWorks.filter(w => w.category === 'photo');
         
         if (currentSubFilter === 'all') {
-            // 写真の「すべて」：全写真の中からランダムにシャッフルして表示
             worksToDisplay = shuffleArray(photoWorks);
         } else {
-            // 写真の小カテゴリ（風景、食べ物など）：該当するものを抽出してシャッフル
-            const subWorks = photoWorks.filter(w => w.subCategory === currentSubFilter);
+            const subWorks = photoWorks.filter(w => w.sub === currentSubFilter);
             worksToDisplay = shuffleArray(subWorks);
         }
 
     } else {
-        // その他の大カテゴリ（チラシ、サムネイル、動画、ウェブ）
         const categoryWorks = allWorks.filter(w => w.category === currentMainFilter);
         worksToDisplay = shuffleArray(categoryWorks);
     }
@@ -87,6 +83,13 @@ function renderGallery() {
         const workItem = document.createElement('div');
         workItem.className = 'work-item';
         workItem.setAttribute('data-category', work.category);
+
+        let totalPhotosCount = 0;
+        if (work.sections) {
+            work.sections.forEach(sec => {
+                totalPhotosCount += sec.photos.length;
+            });
+        }
 
         let contentHTML = '';
         if (work.link) {
@@ -102,7 +105,25 @@ function renderGallery() {
                     </div>
                 </a>
             `;
+        } else if (work.sections) {
+            // アルバム形式（クリックでセクション付き詳細を開く）
+            contentHTML = `
+                <div class="thumbnail-wrapper" data-album-id="${work.id}">
+                    <img src="${work.image}" alt="${work.title}">
+                </div>
+                <div class="work-info" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <span class="category-tag">${work.categoryName}</span>
+                        <h3 style="margin-bottom: 4px;">${work.title}</h3>
+                        <p class="tool-text" style="color: rgba(255,255,255,0.7);">${work.date}</p>
+                    </div>
+                    <div style="font-size: 0.8rem; color: var(--gold-color); letter-spacing: 0.05em; white-space: nowrap;">
+                        ${totalPhotosCount}枚
+                    </div>
+                </div>
+            `;
         } else {
+            // 単発の通常作品
             contentHTML = `
                 <div class="thumbnail-wrapper">
                     <img src="${work.image}" alt="${work.title}">
@@ -119,6 +140,7 @@ function renderGallery() {
         galleryGrid.appendChild(workItem);
     });
 
+    bindAlbumClickEvents();
     bindModalEvents();
 }
 
@@ -133,7 +155,6 @@ filterButtons.forEach(btn => {
 
         currentMainFilter = btn.getAttribute('data-filter');
 
-        // 「写真」が選ばれた時だけ小カテゴリボタンを表示、それ以外は隠す
         if (currentMainFilter === 'photo') {
             subFilterContainer.classList.add('show');
             subFilterButtons.forEach(b => b.classList.remove('active'));
@@ -158,13 +179,82 @@ subFilterButtons.forEach(btn => {
     });
 });
 
-// 4. 画像クリック時の拡大表示（モーダル）機能
+// 4. アルバムクリック時のイベント
+function bindAlbumClickEvents() {
+    const wrappers = galleryGrid.querySelectorAll('.thumbnail-wrapper[data-album-id]');
+    wrappers.forEach(wrapper => {
+        wrapper.onclick = () => {
+            const albumId = wrapper.getAttribute('data-album-id');
+            const targetAlbum = photoData.find(a => a.id === albumId);
+
+            if (targetAlbum && targetAlbum.sections) {
+                showAlbumDetail(targetAlbum);
+            }
+        };
+    });
+}
+
+// アルバム詳細（セクション＆グリッド形式）を表示
+function showAlbumDetail(album) {
+    galleryMainView.style.display = 'none';
+    albumDetailView.classList.add('active');
+    albumDetailTitle.textContent = album.title;
+    
+    albumSectionsContainer.innerHTML = '';
+
+    // セクション内の日付を新しい順（降順）に並び替える
+    const sortedSections = [...album.sections].sort((a, b) => {
+        return new Date(b.date.replace(/\./g, '/')) - new Date(a.date.replace(/\./g, '/'));
+    });
+
+    sortedSections.forEach(section => {
+        const sectionBlock = document.createElement('div');
+        sectionBlock.className = 'album-section-block';
+
+        let photosHtml = '';
+        section.photos.forEach(photoSrc => {
+            photosHtml += `
+                <div class="album-photo-item" onclick="openModal('${photoSrc}')">
+                    <img src="${photoSrc}" alt="写真">
+                </div>
+            `;
+        });
+
+        sectionBlock.innerHTML = `
+            <div class="section-header">
+                <h3 class="section-title">${section.sectionTitle}</h3>
+                <span class="section-date">${section.date}</span>
+            </div>
+            <div class="album-photos-grid">
+                ${photosHtml}
+            </div>
+        `;
+
+        albumSectionsContainer.appendChild(sectionBlock);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 一覧に戻るボタン
+backToGalleryBtn.onclick = () => {
+    albumDetailView.classList.remove('active');
+    galleryMainView.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// 5. 画像拡大表示用モーダル機能
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
 const modalClose = document.querySelector('.modal-close');
 
+function openModal(src) {
+    modalImg.src = src;
+    modal.classList.add('show');
+}
+
 function bindModalEvents() {
-    const thumbnailWrappers = document.querySelectorAll('.thumbnail-wrapper');
+    const thumbnailWrappers = galleryGrid.querySelectorAll('.thumbnail-wrapper:not([data-album-id])');
     thumbnailWrappers.forEach(wrapper => {
         wrapper.onclick = () => {
             if (wrapper.closest('a')) {
@@ -172,8 +262,7 @@ function bindModalEvents() {
             }
             const img = wrapper.querySelector('img');
             if (img && img.src) {
-                modalImg.src = img.src;
-                modal.classList.add('show');
+                openModal(img.src);
             }
         };
     });
