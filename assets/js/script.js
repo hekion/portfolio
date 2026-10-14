@@ -1,10 +1,14 @@
 // 1. スクロールに応じて白い襖が開くアニメーション
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    // アルバム詳細表示中はスクロールによる襖の開閉を無効化する
-    if (document.getElementById('albumDetailView').classList.contains('active')) {
+    const isAlbumOpen = document.getElementById('albumDetailView').classList.contains('active');
+    
+    // アルバム詳細表示中は、どこにスクロールしても絶対に襖が閉じないようにする
+    if (isAlbumOpen) {
+        document.body.classList.add('open');
         return;
     }
+
     if (scrollY > 5) {
         document.body.classList.add('open');
     } else {
@@ -148,7 +152,7 @@ function showAlbumDetail(album) {
     galleryMainView.style.display = 'none';
     albumDetailView.classList.add('active');
     
-    // アルバム表示中は強制的に襖を開いた状態にする
+    // 強制的に襖を開いた状態を維持
     document.body.classList.add('open');
 
     albumDetailTitle.textContent = album.title;
@@ -185,14 +189,17 @@ function showAlbumDetail(album) {
         albumSectionsContainer.appendChild(sectionBlock);
     });
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // ページトップへ安全にスクロール（襖が閉じる心配はもうありません）
+    window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 // 一覧に戻るボタン
 backToGalleryBtn.onclick = () => {
     albumDetailView.classList.remove('active');
     galleryMainView.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // 一覧に戻る際もトップ付近を維持
+    window.scrollTo({ top: 0, behavior: 'instant' });
 };
 
 // 4. 画像拡大表示用モーダル機能
