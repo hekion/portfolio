@@ -67,20 +67,11 @@
             <button class="filter-btn" data-filter="web">ウェブサイト</button>
         </div>
 
-        <!-- ギャラリー・アルバム一覧ビュー -->
-        <div id="galleryMainView">
-            <div class="gallery-grid"></div>
-        </div>
-
-        <!-- アルバムの中身ビュー（セクション＆グリッド形式） -->
-        <div id="albumDetailView" class="album-view">
-            <button class="back-btn" id="backToGallery">&larr; 一覧に戻る</button>
-            <h2 class="album-title-area" id="albumDetailTitle">アルバム名</h2>
-            <div id="albumSectionsContainer"></div>
-        </div>
+        <!-- ギャラリー（一覧） -->
+        <div class="gallery-grid"></div>
     </main>
 
-    <!-- 画像拡大表示用モーダル -->
+    <!-- 画像拡大表示用モーダル（単発作品用） -->
     <div class="modal" id="imageModal">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImg" alt="拡大画像">
