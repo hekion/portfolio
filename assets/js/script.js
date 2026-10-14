@@ -12,7 +12,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 全データを統合してメタ情報を付与
+// 全データを統合して明示的に正しい category を付与
 const allWorks = [
     ...chirashiData.map(item => ({ ...item, category: 'chirashi', categoryName: 'チラシ・POP' })),
     ...photoData.map(item => ({ ...item, category: 'photo' })),
@@ -148,7 +148,7 @@ function showAlbumDetail(album) {
     galleryMainView.style.display = 'none';
     albumDetailView.classList.add('active');
     
-    // アルバム表示中は強制的に襖を開いた状態にする（bodyのopenクラスを維持）
+    // アルバム表示中は強制的に襖を開いた状態にする
     document.body.classList.add('open');
 
     albumDetailTitle.textContent = album.title;
@@ -192,8 +192,6 @@ function showAlbumDetail(album) {
 backToGalleryBtn.onclick = () => {
     albumDetailView.classList.remove('active');
     galleryMainView.style.display = 'block';
-    
-    // 一覧に戻るときに一番上へスクロール（スクロール位置が0なので襖も閉じる状態に戻る）
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
