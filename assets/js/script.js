@@ -31,17 +31,7 @@ const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
 let currentMainFilter = 'all';
 let currentSubFilter = 'all';
 
-// 配列をランダムにシャッフルする関数（Fisher-Yatesアルゴリズム）
-function shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
-
-// ギャラリーを描画する関数
+// ギャラリーを描画する関数（シャッフルなしの順番表示）
 function renderGallery() {
     // アルバム詳細が表示中なら一覧に戻す
     albumDetailView.classList.remove('active');
@@ -52,30 +42,24 @@ function renderGallery() {
     let worksToDisplay = [];
 
     if (currentMainFilter === 'all') {
+        // 「すべて」のときは各カテゴリの定義順にそのまま結合
         const categories = ['chirashi', 'photo', 'thumb', 'video', 'web'];
-        
         categories.forEach(cat => {
             const catWorks = allWorks.filter(w => w.category === cat);
-            const shuffledCatWorks = shuffleArray(catWorks);
-            const limitedWorks = shuffledCatWorks.slice(0, 10);
-            worksToDisplay.push(...limitedWorks);
+            worksToDisplay.push(...catWorks);
         });
-
-        worksToDisplay = shuffleArray(worksToDisplay);
 
     } else if (currentMainFilter === 'photo') {
         const photoWorks = allWorks.filter(w => w.category === 'photo');
         
         if (currentSubFilter === 'all') {
-            worksToDisplay = shuffleArray(photoWorks);
+            worksToDisplay = photoWorks;
         } else {
-            const subWorks = photoWorks.filter(w => w.sub === currentSubFilter);
-            worksToDisplay = shuffleArray(subWorks);
+            worksToDisplay = photoWorks.filter(w => w.sub === currentSubFilter);
         }
 
     } else {
-        const categoryWorks = allWorks.filter(w => w.category === currentMainFilter);
-        worksToDisplay = shuffleArray(categoryWorks);
+        worksToDisplay = allWorks.filter(w => w.category === currentMainFilter);
     }
 
     // カードを生成して配置
