@@ -1,9 +1,9 @@
-// アルバムデータ（セクション構造 ＆ 日付の新しい順ソート対応）
+// アルバムデータ（縦横の指定が不要になり、画像パスを並べるだけでOKになりました）
 const albumData = [
     {
         id: 'kawasaki-ft',
         title: '川崎フロンターレ 撮影記録',
-        date: '2026.02.16', // 大枠用の代表日付（または最新日付）
+        date: '2026.02.16',
         category: 'photo',
         categoryName: '写真（スポーツ）',
         coverImage: 'assets/images/daily/sample1.jpg',
@@ -12,24 +12,25 @@ const albumData = [
                 sectionTitle: '川崎 vs 京都',
                 date: '2026.02.16',
                 photos: [
-                    { src: 'assets/images/daily/sample1.jpg', orientation: 'landscape' },
-                    { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' }
+                    'assets/images/daily/sample1.jpg',
+                    'assets/images/daily/sample2.jpg',
+                    'assets/images/daily/sample3.jpg'
                 ]
             },
             {
                 sectionTitle: '川崎 vs 横浜FC',
                 date: '2025.12.25',
                 photos: [
-                    { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' },
-                    { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' }
+                    'assets/images/daily/sample4.jpg',
+                    'assets/images/daily/sample5.jpg'
                 ]
             },
             {
                 sectionTitle: '川崎 vs ヴィッセル神戸',
                 date: '2025.10.05',
                 photos: [
-                    { src: 'assets/images/daily/sample5.jpg', orientation: 'landscape' },
-                    { src: 'assets/images/daily/sample1.jpg', orientation: 'portrait' }
+                    'assets/images/daily/sample1.jpg',
+                    'assets/images/daily/sample4.jpg'
                 ]
             }
         ]
@@ -46,9 +47,10 @@ const albumData = [
                 sectionTitle: '浅草散歩・その他単発',
                 date: '2026.09.05',
                 photos: [
-                    { src: 'assets/images/daily/sample3.jpg', orientation: 'landscape' },
-                    { src: 'assets/images/daily/sample2.jpg', orientation: 'portrait' },
-                    { src: 'assets/images/daily/sample4.jpg', orientation: 'portrait' }
+                    'assets/images/daily/sample3.jpg',
+                    'assets/images/daily/sample2.jpg',
+                    'assets/images/daily/sample4.jpg',
+                    'assets/images/daily/sample5.jpg'
                 ]
             }
         ]
@@ -62,7 +64,7 @@ const albumDetailTitle = document.getElementById('albumDetailTitle');
 const albumSectionsContainer = document.getElementById('albumSectionsContainer');
 const backToGalleryBtn = document.getElementById('backToGallery');
 
-// アルバム一覧を描画（総写真枚数もセクションから自動計算）
+// アルバム一覧を描画
 function renderAlbumList() {
     galleryGrid.innerHTML = '';
 
@@ -113,7 +115,7 @@ function bindAlbumClickEvents() {
     });
 }
 
-// アルバム詳細（セクション＆パズル形式）を表示
+// アルバム詳細（セクション＆グリッド形式）を表示
 function showAlbumDetail(album) {
     galleryMainView.style.display = 'none';
     albumDetailView.classList.add('active');
@@ -132,10 +134,10 @@ function showAlbumDetail(album) {
         sectionBlock.className = 'album-section-block';
 
         let photosHtml = '';
-        section.photos.forEach(photo => {
+        section.photos.forEach(photoSrc => {
             photosHtml += `
-                <div class="album-photo-item ${photo.orientation}" onclick="openModal('${photo.src}')">
-                    <img src="${photo.src}" alt="写真">
+                <div class="album-photo-item" onclick="openModal('${photoSrc}')">
+                    <img src="${photoSrc}" alt="写真">
                 </div>
             `;
         });
