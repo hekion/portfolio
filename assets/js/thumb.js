@@ -1,3 +1,3 @@
 const thumbData = [
-    { title: "coming soon...", image: "assets/images/thumb/sample2.jpg", tool: "Photoshop / 勉強中" }
+    { title: "coming soon...", image: "assets/images/daily/prepare.png", tool: "Photoshop / 勉強中" }
 ];
