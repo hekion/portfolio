@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>紺碧 | KONPEKI (パズルレイアウト実験)</title>
+    <title>紺碧 | KONPEKI (セクション付きアルバム実験)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* --- 根本的な高さを強制リセットして空白を消す --- */
+        /* 根本的な高さをリセットして不自然な余白を防ぐ */
         html, body {
             height: auto !important;
             min-height: 100% !important;
@@ -21,7 +21,7 @@
         .main-container {
             position: relative !important;
             margin-top: 40px !important;
-            margin-bottom: 40px !important;
+            margin-bottom: 60px !important;
             min-height: auto !important;
             height: auto !important;
         }
@@ -50,9 +50,32 @@
         .album-title-area {
             font-size: 1.5rem;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             border-bottom: 1px solid rgba(197, 160, 89, 0.3);
             padding-bottom: 10px;
+        }
+
+        /* アルバム内部のセクション見出し */
+        .album-section-block {
+            margin-bottom: 40px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.2);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 500;
+        }
+        .section-date {
+            font-size: 0.85rem;
+            color: var(--gold-color);
+            letter-spacing: 0.1em;
         }
 
         /* サムネイルの比率を正確な 3:2 に固定 */
@@ -133,11 +156,13 @@
             <div class="gallery-grid"></div>
         </div>
 
-        <!-- アルバムの中身ビュー（パズル形式） -->
+        <!-- アルバムの中身ビュー（セクション＆パズル形式） -->
         <div id="albumDetailView" class="album-view">
             <button class="back-btn" id="backToGallery">&larr; 一覧に戻る</button>
             <h2 class="album-title-area" id="albumDetailTitle">アルバム名</h2>
-            <div class="album-photos-grid" id="albumPhotosGrid"></div>
+            <div id="albumSectionsContainer">
+                <!-- セクションごとにここに展開されます -->
+            </div>
         </div>
 
     </main>
