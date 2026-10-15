@@ -5,9 +5,7 @@ let currentMainFilter = 'all';
 
 if (returningFromAlbum) {
     currentMainFilter = 'photo';
-    // フラグを消費してクリアする
     sessionStorage.removeItem('returnFromAlbum');
-    // 戻ってきた瞬間は襖が開いた状態にしておく
     document.body.classList.add('open');
 }
 
@@ -15,7 +13,6 @@ if (returningFromAlbum) {
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     
-    // ページの一番上（5px以下）に戻ったら襖を閉じる、それ以外は開く
     if (scrollY > 5) {
         document.body.classList.add('open');
     } else {
@@ -90,7 +87,7 @@ function renderGallery() {
                 </a>
             `;
         } else if (work.sections) {
-            // アルバム形式（クリックで独立した photo-album.html へジャンプ）
+            // アルバム形式（アルバムサムネイル下の日付を非表示にし、枚数のみすっきりと配置）
             contentHTML = `
                 <a href="photo-album.html?id=${work.id}" class="work-link" style="text-decoration: none; color: inherit; display: block;">
                     <div class="thumbnail-wrapper">
@@ -99,8 +96,7 @@ function renderGallery() {
                     <div class="work-info" style="display: flex; justify-content: space-between; align-items: flex-end;">
                         <div>
                             <span class="category-tag">${work.categoryName}</span>
-                            <h3 style="margin-bottom: 4px;">${work.title}</h3>
-                            <p class="tool-text" style="color: rgba(255,255,255,0.7);">${work.date}</p>
+                            <h3 style="margin-bottom: 0;">${work.title}</h3>
                         </div>
                         <div style="font-size: 0.8rem; color: var(--gold-color); letter-spacing: 0.05em; white-space: nowrap;">
                             ${totalPhotosCount}枚
@@ -132,7 +128,7 @@ function renderGallery() {
 // 初期描画
 renderGallery();
 
-// もしアルバムから戻ってきた場合は、ウェルカムスペースを飛び越えてカテゴリメニューの位置までスクロールする
+// アルバムから戻ってきた場合はウェルカムスペースをスキップしてカテゴリメニューの位置までスクロール
 if (returningFromAlbum) {
     window.addEventListener('load', () => {
         const filterContainer = document.getElementById('filterContainer');
