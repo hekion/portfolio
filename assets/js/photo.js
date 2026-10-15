@@ -409,7 +409,6 @@ const photoData = [
                     "assets/images/photo/DSC_7393.jpg",
                     "assets/images/photo/DSC_7453.jpg",
                     "assets/images/photo/DSC_7501.jpg",
-                    "assets/images/photo/DSC_7541.jpg",
                     "assets/images/photo/DSC_7606.jpg",
                     "assets/images/photo/DSC_7694.jpg",
                     "assets/images/photo/DSC_7717.jpg",
