@@ -7,14 +7,16 @@ if (returningFromAlbum) {
     currentMainFilter = 'photo';
     // フラグを消費してクリアする
     sessionStorage.removeItem('returnFromAlbum');
-    // 最初から襖が開いた状態にする
+    // 戻ってきた瞬間は襖が開いた状態にしておく
     document.body.classList.add('open');
 }
 
-// 1. スクロールに応じて白い襖が開くアニメーション
+// 1. スクロールに応じて白い襖が開閉するアニメーション
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    if (scrollY > 5 || document.body.classList.contains('open')) {
+    
+    // ページの一番上（5px以下）に戻ったら襖を閉じる、それ以外は開く
+    if (scrollY > 5) {
         document.body.classList.add('open');
     } else {
         document.body.classList.remove('open');
