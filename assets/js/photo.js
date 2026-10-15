@@ -6,7 +6,6 @@ const photoData = [
         date: '2026.10.03',
         categoryName: '写真（スポーツ）',
         image: 'assets/images/photo/pedro-romano.jpg',
-        sub: 'sports',
         sections: [
             {
                 sectionTitle: 'vs U-21 東京ヴェルディ',
@@ -65,7 +64,6 @@ const photoData = [
         date: '2026.09.12',
         categoryName: '写真（スポーツ）',
         image: 'assets/images/photo/yamasaki-yasuaki.jpg',
-        sub: 'sports',
         sections: [
             {
                 sectionTitle: '横浜F・マリノス vs FC町田ゼルビア',
@@ -100,7 +98,6 @@ const photoData = [
         date: '2026.08.15',
         categoryName: '写真（人物）',
         image: 'assets/images/photo/kamimura-hinano.jpg',
-        sub: 'people',
         sections: [
             {
                 sectionTitle: '川崎フロンターレ始球式',
@@ -153,7 +150,6 @@ const photoData = [
         date: '2026.01.01',
         categoryName: '写真（その他）',
         image: 'assets/images/photo/kawauso.jpg',
-        sub: 'other',
         sections: [
             {
                 sectionTitle: '動物たち',
@@ -176,7 +172,6 @@ const photoData = [
         date: '2026.01.01',
         categoryName: '写真（食べ物）',
         image: 'assets/images/photo/shihachi-02.jpg',
-        sub: 'food',
         sections: [
             {
                 sectionTitle: 'シハチ鮮魚店',
@@ -204,7 +199,6 @@ const photoData = [
         date: '2026.09.01',
         categoryName: '写真（風景）',
         image: 'assets/images/photo/jingu-namiki.jpg',
-        sub: 'landscape',
         sections: [
             {
                 sectionTitle: 'ポケパークカントー',
@@ -227,6 +221,7 @@ const photoData = [
                     "assets/images/photo/disneysea20260708-07.jpg",
                     "assets/images/photo/disneysea20260708-08.jpg",
                     "assets/images/photo/disneysea20260708-09.jpg",
+                    "assets/images/photo/DSC02938.jpg",
                     "assets/images/photo/DSC02957.jpg",
                     "assets/images/photo/DSC02968.jpg"
                 ]
@@ -237,8 +232,7 @@ const photoData = [
                 photos: [
                     "assets/images/photo/DSC01175.jpg",
                     "assets/images/photo/DSC01178.jpg",
-                    "assets/images/photo/DSC01181.jpg",
-                    "assets/images/photo/sensoji.jpg"
+                    "assets/images/photo/DSC01181.jpg"
                 ]
             },
             {
@@ -249,7 +243,8 @@ const photoData = [
                     "assets/images/photo/DSC01970.jpg",
                     "assets/images/photo/DSC01988.jpg",
                     "assets/images/photo/DSC02013.jpg",
-                    "assets/images/photo/DSC02019.jpg"
+                    "assets/images/photo/DSC02019.jpg",
+                    "assets/images/photo/sensoji.jpg"
                 ]
             },
             {
@@ -289,7 +284,6 @@ const photoData = [
         date: '2026.01.01',
         categoryName: '写真（風景）',
         image: 'assets/images/photo/karuizawa.jpg',
-        sub: 'landscape',
         sections: [
             {
                 sectionTitle: '群馬旅行',
@@ -406,8 +400,14 @@ const photoData = [
         date: '2026.06.14',
         categoryName: '写真（その他）',
         image: 'assets/images/photo/tyouzyu-prowres.jpg',
-        sub: 'other',
         sections: [
+            {
+                sectionTitle: 'テストイベント',
+                date: '2026.10.15',
+                photos: [
+                    "assets/images/photo/tyouzyu-kids.jpg"
+                ]
+            },
             {
                 sectionTitle: 'キッズスポーツフェスタ',
                 date: '2026.06.14',
@@ -435,7 +435,6 @@ const photoData = [
         date: '',
         categoryName: '写真（風景）',
         image: 'assets/images/photo/azisai-blue.jpg',
-        sub: 'landscape',
         sections: [
             {
                 sectionTitle: '植物',
@@ -472,7 +471,6 @@ const photoData = [
         date: '2026.01.01',
         categoryName: '写真（風景）',
         image: 'assets/images/photo/haneda-airdorokon.jpg',
-        sub: 'landscape',
         sections: [
             {
                 sectionTitle: '飛行機',
