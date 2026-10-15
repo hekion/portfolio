@@ -1,19 +1,20 @@
-// URLパラメータを取得して初期状態を決定する
-const urlParams = new URLSearchParams(window.location.search);
-const initialFilter = urlParams.get('filter');
+// アルバムから戻ってきたかどうかの判定
+const returningFromAlbum = sessionStorage.getItem('returnFromAlbum');
 
 let currentMainFilter = 'all';
-if (initialFilter) {
-    currentMainFilter = initialFilter;
-    // ページ読み込み時に最初から襖が開いた状態にする
+
+if (returningFromAlbum) {
+    currentMainFilter = 'photo';
+    // フラグを消費してクリアする
+    sessionStorage.removeItem('returnFromAlbum');
+    // 最初から襖が開いた状態にする
     document.body.classList.add('open');
 }
 
 // 1. スクロールに応じて白い襖が開くアニメーション
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    // パラメータで開いている場合、またはスクロールされている場合
-    if (scrollY > 5 || urlParams.has('filter')) {
+    if (scrollY > 5 || document.body.classList.contains('open')) {
         document.body.classList.add('open');
     } else {
         document.body.classList.remove('open');
@@ -32,10 +33,10 @@ const allWorks = [
 const galleryGrid = document.querySelector('.gallery-grid');
 const filterButtons = document.querySelectorAll('.filter-btn');
 
-// 読み込み時にURLパラメータに合わせてボタンのactive状態を合わせる
-if (initialFilter) {
+// ボタンの初期アクティブ状態を反映
+if (returningFromAlbum) {
     filterButtons.forEach(btn => {
-        if (btn.getAttribute('data-filter') === initialFilter) {
+        if (btn.getAttribute('data-filter') === 'photo') {
             btn.classList.add('active');
         } else {
             btn.classList.remove('active');
@@ -128,6 +129,17 @@ function renderGallery() {
 
 // 初期描画
 renderGallery();
+
+// もしアルバムから戻ってきた場合は、ウェルカムスペースを飛び越えてカテゴリメニューの位置までスクロールする
+if (returningFromAlbum) {
+    window.addEventListener('load', () => {
+        const filterContainer = document.getElementById('filterContainer');
+        if (filterContainer) {
+            const targetPosition = filterContainer.getBoundingClientRect().top + window.pageYOffset - 20;
+            window.scrollTo({ top: targetPosition, behavior: 'instant' });
+        }
+    });
+}
 
 // 2. メインフィルターボタンの制御
 filterButtons.forEach(btn => {
