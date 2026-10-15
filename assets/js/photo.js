@@ -402,10 +402,18 @@ const photoData = [
         image: 'assets/images/photo/tyouzyu-prowres.jpg',
         sections: [
             {
-                sectionTitle: 'テストイベント',
-                date: '2026.10.15',
+                sectionTitle: 'びしょ濡れかけっこ',
+                date: '2026.07.24',
                 photos: [
-                    "assets/images/photo/tyouzyu-kids.jpg"
+                    "assets/images/photo/DSC_7385.jpg",
+                    "assets/images/photo/DSC_7393.jpg",
+                    "assets/images/photo/DSC_7453.jpg",
+                    "assets/images/photo/DSC_7501.jpg",
+                    "assets/images/photo/DSC_7541.jpg",
+                    "assets/images/photo/DSC_7606.jpg",
+                    "assets/images/photo/DSC_7694.jpg",
+                    "assets/images/photo/DSC_7717.jpg",
+                    "assets/images/photo/DSC_7747.jpg"  
                 ]
             },
             {
