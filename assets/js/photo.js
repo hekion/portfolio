@@ -12,15 +12,32 @@ const photoData = [
                 sectionTitle: 'vs U-21 東京ヴェルディ',
                 date: '2026.10.03',
                 photos: [
-
-                ] // 枠のみ（後から追加）
+                    "assets/images/photo/DSC04014.jpg",
+                    "assets/images/photo/DSC04046.jpg",
+                    "assets/images/photo/DSC04047.jpg",
+                    "assets/images/photo/DSC04049.jpg",
+                    "assets/images/photo/DSC04075.jpg",
+                    "assets/images/photo/DSC04079.jpg",
+                    "assets/images/photo/DSC04080.jpg"
+                ]
             },
             {
                 sectionTitle: 'vs 京都サンガF.C.',
                 date: '2026.08.15',
                 photos: [
                     "assets/images/photo/pedro-romano.jpg",
-                    "assets/images/photo/miyagi-ten.jpg"
+                    "assets/images/photo/miyagi-ten.jpg",
+                    "assets/images/photo/DSC03495.jpg",
+                    "assets/images/photo/DSC03519.jpg",
+                    "assets/images/photo/DSC03531.jpg",
+                    "assets/images/photo/DSC03562.jpg",
+                    "assets/images/photo/DSC03563.jpg",
+                    "assets/images/photo/DSC03615.jpg",
+                    "assets/images/photo/DSC03644.jpg",
+                    "assets/images/photo/DSC03645.jpg",
+                    "assets/images/photo/DSC03669.jpg",
+                    "assets/images/photo/DSC03681.jpg",
+                    "assets/images/photo/DSC03694.jpg"
                 ]
             },
             {
@@ -28,7 +45,14 @@ const photoData = [
                 date: '2026.05.17',
                 photos: [
                     "assets/images/photo/ito-tatsuya.jpg",
-                    "assets/images/photo/yamaguchi-rui.jpg"
+                    "assets/images/photo/yamaguchi-rui.jpg",
+                    "assets/images/photo/DSC01823.jpg",
+                    "assets/images/photo/DSC01867.jpg",
+                    "assets/images/photo/DSC01889.jpg",
+                    "assets/images/photo/DSC01895.jpg",
+                    "assets/images/photo/DSC01910.jpg",
+                    "assets/images/photo/DSC01913.jpg",
+                    "assets/images/photo/DSC01925.jpg"
                 ]
             }
         ]
@@ -47,7 +71,11 @@ const photoData = [
                 sectionTitle: '横浜F・マリノス vs FC町田ゼルビア',
                 date: '2026.09.12',
                 photos: [
-                    "assets/images/photo/soma-yuki.jpg"
+                    "assets/images/photo/soma-yuki.jpg",
+                    "assets/images/photo/DSC03958.jpg",
+                    "assets/images/photo/DSC03962.jpg",
+                    "assets/images/photo/DSC03975.jpg",
+                    "assets/images/photo/DSC03978.jpg"
                 ]
             },
             {
@@ -56,7 +84,10 @@ const photoData = [
                 photos: [
                     "assets/images/photo/yamasaki-yasuaki.jpg",
                     "assets/images/photo/yoshida-kousei.jpg",
-                    "assets/images/photo/azuma-katsuki.jpg"
+                    "assets/images/photo/azuma-katsuki.jpg",
+                    "assets/images/photo/DSC02129.jpg",
+                    "assets/images/photo/DSC02132.jpg",
+                    "assets/images/photo/DSC02175.jpg"
                 ]
             }
         ]
@@ -75,7 +106,12 @@ const photoData = [
                 sectionTitle: '川崎フロンターレ始球式',
                 date: '2026.08.15',
                 photos: [
-                    "assets/images/photo/tomita-suzuka.jpg"
+                    "assets/images/photo/tomita-suzuka.jpg",
+                    "assets/images/photo/DSC03572.jpg",
+                    "assets/images/photo/DSC03579.jpg",
+                    "assets/images/photo/DSC03580.jpg",
+                    "assets/images/photo/DSC03581.jpg",
+                    "assets/images/photo/DSC03597.jpg"
                 ]
             },
             {
@@ -91,7 +127,20 @@ const photoData = [
                 date: '2026.05.28',
                 photos: [
                     "assets/images/photo/kamimura-hinano.jpg",
-                    "assets/images/photo/kosaka-nao.jpg"
+                    "assets/images/photo/kosaka-nao.jpg",
+                    "assets/images/photo/DSC02054.jpg",
+                    "assets/images/photo/DSC02096.jpg",
+                    "assets/images/photo/DSC02106.jpg",
+                    "assets/images/photo/DSC02149.jpg",
+                    "assets/images/photo/DSC02155.jpg",
+                    "assets/images/photo/DSC02156.jpg",
+                    "assets/images/photo/DSC02157.jpg",
+                    "assets/images/photo/DSC02168.jpg",
+                    "assets/images/photo/DSC02177.jpg",
+                    "assets/images/photo/DSC02201.jpg",
+                    "assets/images/photo/DSC02219.jpg",
+                    "assets/images/photo/DSC02228.jpg",
+                    "assets/images/photo/DSC02361.jpg"
                 ]
             }
         ]
@@ -110,7 +159,11 @@ const photoData = [
                 sectionTitle: '動物たち',
                 date: '',
                 photos: [
-                    "assets/images/photo/kawauso.jpg"
+                    "assets/images/photo/kawauso.jpg",
+                    "assets/images/photo/DSC00840.jpg",
+                    "assets/images/photo/DSC00844.jpg",
+                    "assets/images/photo/DSC00881.jpg",
+                    "assets/images/photo/DSC01293.jpg"
                 ]
             }
         ]
@@ -131,6 +184,14 @@ const photoData = [
                 photos: [
                     "assets/images/photo/shihachi-01.jpg",
                     "assets/images/photo/shihachi-02.jpg"
+                ]
+            },
+            {
+                sectionTitle: 'その他グルメ',
+                date: '',
+                photos: [
+                    "assets/images/photo/DSC02459.jpg",
+                    "assets/images/photo/DSC02462.jpg"
                 ]
             }
         ]
@@ -166,6 +227,18 @@ const photoData = [
                 ]
             },
             {
+                sectionTitle: 'ポケパークカントー',
+                date: '',
+                photos: [
+                    "assets/images/photo/DSC00910.jpg",
+                    "assets/images/photo/DSC00919.jpg",
+                    "assets/images/photo/DSC00931.jpg",
+                    "assets/images/photo/DSC00932.jpg",
+                    "assets/images/photo/DSC00946.jpg",
+                    "assets/images/photo/DSC00977.jpg"
+                ]
+            },
+            {
                 sectionTitle: 'ディズニーシー',
                 date: '',
                 photos: [
@@ -173,7 +246,30 @@ const photoData = [
                     "assets/images/photo/disneysea20260708-06.jpg",
                     "assets/images/photo/disneysea20260708-07.jpg",
                     "assets/images/photo/disneysea20260708-08.jpg",
-                    "assets/images/photo/disneysea20260708-09.jpg"
+                    "assets/images/photo/disneysea20260708-09.jpg",
+                    "assets/images/photo/DSC02938.jpg",
+                    "assets/images/photo/DSC02957.jpg",
+                    "assets/images/photo/DSC02968.jpg"
+                ]
+            },
+            {
+                sectionTitle: '浅草',
+                date: '',
+                photos: [
+                    "assets/images/photo/DSC01175.jpg",
+                    "assets/images/photo/DSC01178.jpg",
+                    "assets/images/photo/DSC01181.jpg"
+                ]
+            },
+            {
+                sectionTitle: '国立競技場(MUFGスタジアム)',
+                date: '',
+                photos: [
+                    "assets/images/photo/DSC01969.jpg",
+                    "assets/images/photo/DSC01970.jpg",
+                    "assets/images/photo/DSC01988.jpg",
+                    "assets/images/photo/DSC02013.jpg",
+                    "assets/images/photo/DSC02019.jpg"
                 ]
             },
             {
@@ -187,7 +283,16 @@ const photoData = [
                     "assets/images/photo/kadokawa-01.jpg",
                     "assets/images/photo/kadokawa-02.jpg",
                     "assets/images/photo/hanabiyori-01.jpg",
-                    "assets/images/photo/hanabiyori-02.jpg"
+                    "assets/images/photo/hanabiyori-02.jpg",
+                    "assets/images/photo/DSC00775.jpg",
+                    "assets/images/photo/DSC01132.jpg",
+                    "assets/images/photo/DSC01206.jpg",
+                    "assets/images/photo/DSC01232.jpg",
+                    "assets/images/photo/DSC01240.jpg",
+                    "assets/images/photo/DSC01263.jpg",
+                    "assets/images/photo/DSC01276.jpg",
+                    "assets/images/photo/DSC01280.jpg",
+                    "assets/images/photo/DSC01282.jpg"
                 ]
             }
         ]
@@ -203,10 +308,19 @@ const photoData = [
         sub: 'landscape',
         sections: [
             {
-                sectionTitle: '軽井沢旅行',
-                date: '2025.11',
+                sectionTitle: '茨城・千葉旅行',
+                date: '2026.06',
                 photos: [
-                    "assets/images/photo/karuizawa.jpg"
+                    "assets/images/photo/DSC02418.jpg",
+                    "assets/images/photo/DSC02420.jpg",
+                    "assets/images/photo/DSC02422.jpg",
+                    "assets/images/photo/DSC02423.jpg",
+                    "assets/images/photo/DSC02434.jpg",
+                    "assets/images/photo/DSC02435.jpg",
+                    "assets/images/photo/DSC02440.jpg",
+                    "assets/images/photo/DSC02450.jpg",
+                    "assets/images/photo/DSC02452.jpg",
+                    "assets/images/photo/DSC02453.jpg"
                 ]
             },
             {
@@ -217,14 +331,77 @@ const photoData = [
                     "assets/images/photo/yamba-02.jpg",
                     "assets/images/photo/kusatsu-01.jpg",
                     "assets/images/photo/kusatsu-02.jpg",
-                    "assets/images/photo/kusatsu-03.jpg"
+                    "assets/images/photo/kusatsu-03.jpg",
+                    "assets/images/photo/DSC03911.jpg",
+                    "assets/images/photo/DSC03916.jpg",
+                    "assets/images/photo/DSC03917.jpg"
+                ]
+            },
+            {
+                sectionTitle: '香川旅行',
+                date: '2026.08',
+                photos: [
+                    "assets/images/photo/DSC03721.jpg",
+                    "assets/images/photo/DSC03730.jpg",
+                    "assets/images/photo/DSC03733.jpg",
+                    "assets/images/photo/DSC03743.jpg",
+                    "assets/images/photo/DSC03748.jpg",
+                    "assets/images/photo/DSC03750.jpg",
+                    "assets/images/photo/DSC03788.jpg",
+                    "assets/images/photo/DSC03831.jpg",
+                    "assets/images/photo/DSC03839.jpg"
+                ]
+            },
+            {
+                sectionTitle: '北海道旅行',
+                date: '2026.08',
+                photos: [
+                    "assets/images/photo/DSC03070.jpg",
+                    "assets/images/photo/DSC03084.jpg",
+                    "assets/images/photo/DSC03116.jpg",
+                    "assets/images/photo/DSC03127.jpg",
+                    "assets/images/photo/DSC03208.jpg",
+                    "assets/images/photo/DSC03225-2.jpg"
+                ]
+            },
+            {
+                sectionTitle: '大阪・関西万博',
+                date: '2025.07',
+                photos: [
+                    "assets/images/photo/DSC00577.jpg",
+                    "assets/images/photo/DSC00596.jpg",
+                    "assets/images/photo/DSC00598.jpg",
+                    "assets/images/photo/DSC00607.jpg",
+                    "assets/images/photo/DSC00621.jpg",
+                    "assets/images/photo/DSC00622.jpg"
+                ]
+            },
+            {
+                sectionTitle: '京都',
+                date: '2025.10',
+                photos: [
+                    "assets/images/photo/DSC00718.jpg",
+                    "assets/images/photo/DSC00725.jpg",
+                    "assets/images/photo/DSC00727.jpg",
+                    "assets/images/photo/DSC00731.jpg"
+                ]
+            },
+            {
+                sectionTitle: '軽井沢旅行',
+                date: '2025.11',
+                photos: [
+                    "assets/images/photo/karuizawa.jpg"
                 ]
             },
             {
                 sectionTitle: '伊豆旅行',
                 date: '2025.03',
                 photos: [
-                    "assets/images/photo/kawazu.jpg"
+                    "assets/images/photo/kawazu.jpg",
+                    "assets/images/photo/DSC00553.jpg",
+                    "assets/images/photo/DSC00562.jpg",
+                    "assets/images/photo/DSC00567.jpg",
+                    "assets/images/photo/DSC00575.jpg"
                 ]
             }
         ]
@@ -263,7 +440,7 @@ const photoData = [
     {
         id: 'plants-album',
         title: '植物・自然',
-        date: '2026.01.01',
+        date: '',
         categoryName: '写真（風景）',
         image: 'assets/images/photo/azisai-blue.jpg',
         sub: 'landscape',
@@ -280,7 +457,17 @@ const photoData = [
                     "assets/images/photo/disneysea20260708-04.jpg",
                     "assets/images/photo/disneysea20260708-05.jpg",
                     "assets/images/photo/azisai-blue.jpg",
-                    "assets/images/photo/hanasyoubu.jpg"
+                    "assets/images/photo/hanasyoubu.jpg",
+                    "assets/images/photo/DSC02475.jpg",
+                    "assets/images/photo/DSC02476.jpg",
+                    "assets/images/photo/DSC03164.jpg",
+                    "assets/images/photo/DSC03165.jpg",
+                    "assets/images/photo/DSC03168.jpg",
+                    "assets/images/photo/DSC03170.jpg",
+                    "assets/images/photo/DSC03173.jpg",
+                    "assets/images/photo/DSC03181.jpg",
+                    "assets/images/photo/DSC03188.jpg",
+                    "assets/images/photo/DSC03228.jpg"
                 ]
             }
         ]
@@ -297,13 +484,15 @@ const photoData = [
         sections: [
             {
                 sectionTitle: '飛行機',
-                date: '2026.01.01',
+                date: '',
                 photos: [
                     "assets/images/photo/haneda-anapokemon.jpg",
                     "assets/images/photo/haneda-delta.jpg",
                     "assets/images/photo/haneda-solaseed.jpg",
                     "assets/images/photo/haneda-airdorokon.jpg",
-                    "assets/images/photo/haneda-ana.jpg"
+                    "assets/images/photo/haneda-ana.jpg",
+                    "assets/images/photo/DSC01682.jpg",
+                    "assets/images/photo/DSC02991-2.jpg"
                 ]
             }
         ]
