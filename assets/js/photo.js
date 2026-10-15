@@ -25,8 +25,6 @@ const photoData = [
                 sectionTitle: 'vs 京都サンガF.C.',
                 date: '2026.08.15',
                 photos: [
-                    "assets/images/photo/pedro-romano.jpg",
-                    "assets/images/photo/miyagi-ten.jpg",
                     "assets/images/photo/DSC03495.jpg",
                     "assets/images/photo/DSC03519.jpg",
                     "assets/images/photo/DSC03531.jpg",
@@ -36,6 +34,8 @@ const photoData = [
                     "assets/images/photo/DSC03644.jpg",
                     "assets/images/photo/DSC03645.jpg",
                     "assets/images/photo/DSC03669.jpg",
+                    "assets/images/photo/pedro-romano.jpg",
+                    "assets/images/photo/miyagi-ten.jpg",
                     "assets/images/photo/DSC03681.jpg",
                     "assets/images/photo/DSC03694.jpg"
                 ]
@@ -44,15 +44,15 @@ const photoData = [
                 sectionTitle: 'vs FC町田ゼルビア',
                 date: '2026.05.17',
                 photos: [
-                    "assets/images/photo/ito-tatsuya.jpg",
-                    "assets/images/photo/yamaguchi-rui.jpg",
                     "assets/images/photo/DSC01823.jpg",
                     "assets/images/photo/DSC01867.jpg",
                     "assets/images/photo/DSC01889.jpg",
                     "assets/images/photo/DSC01895.jpg",
+                    "assets/images/photo/ito-tatsuya.jpg",
                     "assets/images/photo/DSC01910.jpg",
                     "assets/images/photo/DSC01913.jpg",
                     "assets/images/photo/DSC01925.jpg"
+                    "assets/images/photo/yamaguchi-rui.jpg",
                 ]
             }
         ]
@@ -81,13 +81,13 @@ const photoData = [
             {
                 sectionTitle: '横浜DeNAベイスターズ vs オリックス・バファローズ',
                 date: '2026.05.28',
-                photos: [
-                    "assets/images/photo/yamasaki-yasuaki.jpg",
-                    "assets/images/photo/yoshida-kousei.jpg",
+                photos: [                    
                     "assets/images/photo/azuma-katsuki.jpg",
                     "assets/images/photo/DSC02129.jpg",
                     "assets/images/photo/DSC02132.jpg",
-                    "assets/images/photo/DSC02175.jpg"
+                    "assets/images/photo/DSC02175.jpg",
+                    "assets/images/photo/yoshida-kousei.jpg",
+                    "assets/images/photo/yamasaki-yasuaki.jpg"
                 ]
             }
         ]
@@ -105,12 +105,12 @@ const photoData = [
             {
                 sectionTitle: '川崎フロンターレ始球式',
                 date: '2026.08.15',
-                photos: [
-                    "assets/images/photo/tomita-suzuka.jpg",
+                photos: [                    
                     "assets/images/photo/DSC03572.jpg",
                     "assets/images/photo/DSC03579.jpg",
                     "assets/images/photo/DSC03580.jpg",
                     "assets/images/photo/DSC03581.jpg",
+                    "assets/images/photo/tomita-suzuka.jpg",
                     "assets/images/photo/DSC03597.jpg"
                 ]
             },
@@ -126,15 +126,15 @@ const photoData = [
                 sectionTitle: '日向坂×DeNAコラボイベント',
                 date: '2026.05.28',
                 photos: [
-                    "assets/images/photo/kamimura-hinano.jpg",
-                    "assets/images/photo/kosaka-nao.jpg",
-                    "assets/images/photo/DSC02054.jpg",
+                    "assets/images/photo/DSC02054.jpg",                                                            
                     "assets/images/photo/DSC02096.jpg",
                     "assets/images/photo/DSC02106.jpg",
                     "assets/images/photo/DSC02149.jpg",
+                    "assets/images/photo/kosaka-nao.jpg",
                     "assets/images/photo/DSC02155.jpg",
                     "assets/images/photo/DSC02156.jpg",
                     "assets/images/photo/DSC02157.jpg",
+                    "assets/images/photo/kamimura-hinano.jpg",
                     "assets/images/photo/DSC02168.jpg",
                     "assets/images/photo/DSC02177.jpg",
                     "assets/images/photo/DSC02201.jpg",
@@ -207,26 +207,6 @@ const photoData = [
         sub: 'landscape',
         sections: [
             {
-                sectionTitle: '香川周辺',
-                date: '2026.09',
-                photos: [
-                    "assets/images/photo/takamatsu-syoudoshima.jpg"
-                ]
-            },
-            {
-                sectionTitle: '北海道',
-                date: '2026.08',
-                photos: [
-                    "assets/images/photo/sapporo-televitou.jpg",
-                    "assets/images/photo/susukino-01.jpg",
-                    "assets/images/photo/susukino-02.jpg",
-                    "assets/images/photo/escon-01.jpg",
-                    "assets/images/photo/escon-02.jpg",
-                    "assets/images/photo/yuni-02.jpg",
-                    "assets/images/photo/yuni-03.jpg"
-                ]
-            },
-            {
                 sectionTitle: 'ポケパークカントー',
                 date: '',
                 photos: [
@@ -270,26 +250,31 @@ const photoData = [
                     "assets/images/photo/DSC01988.jpg",
                     "assets/images/photo/DSC02013.jpg",
                     "assets/images/photo/DSC02019.jpg"
+                    "assets/images/photo/sensoji.jpg",
+                ]
+            },
+            {
+                sectionTitle: 'HANA-BIYORI',
+                date: '',
+                photos: [
+                    "assets/images/photo/DSC01206.jpg",
+                    "assets/images/photo/DSC01232.jpg",
+                    "assets/images/photo/DSC01240.jpg",
+                    "assets/images/photo/DSC01263.jpg",
+                    "assets/images/photo/hanabiyori-01.jpg",
+                    "assets/images/photo/hanabiyori-02.jpg",
                 ]
             },
             {
                 sectionTitle: 'その他スポット',
                 date: '',
-                photos: [
-                    "assets/images/photo/sensoji.jpg",
+                photos: [                    
                     "assets/images/photo/ginza-tokei.jpg",
-                    "assets/images/photo/toji-kyoto.jpg",
+                    "assets/images/photo/DSC00775.jpg",
                     "assets/images/photo/jingu-namiki.jpg",
                     "assets/images/photo/kadokawa-01.jpg",
-                    "assets/images/photo/kadokawa-02.jpg",
-                    "assets/images/photo/hanabiyori-01.jpg",
-                    "assets/images/photo/hanabiyori-02.jpg",
-                    "assets/images/photo/DSC00775.jpg",
-                    "assets/images/photo/DSC01132.jpg",
-                    "assets/images/photo/DSC01206.jpg",
-                    "assets/images/photo/DSC01232.jpg",
-                    "assets/images/photo/DSC01240.jpg",
-                    "assets/images/photo/DSC01263.jpg",
+                    "assets/images/photo/kadokawa-02.jpg",                                      
+                    "assets/images/photo/DSC01132.jpg",                 
                     "assets/images/photo/DSC01276.jpg",
                     "assets/images/photo/DSC01280.jpg",
                     "assets/images/photo/DSC01282.jpg"
@@ -307,22 +292,6 @@ const photoData = [
         image: 'assets/images/photo/karuizawa.jpg',
         sub: 'landscape',
         sections: [
-            {
-                sectionTitle: '茨城・千葉旅行',
-                date: '2026.06',
-                photos: [
-                    "assets/images/photo/DSC02418.jpg",
-                    "assets/images/photo/DSC02420.jpg",
-                    "assets/images/photo/DSC02422.jpg",
-                    "assets/images/photo/DSC02423.jpg",
-                    "assets/images/photo/DSC02434.jpg",
-                    "assets/images/photo/DSC02435.jpg",
-                    "assets/images/photo/DSC02440.jpg",
-                    "assets/images/photo/DSC02450.jpg",
-                    "assets/images/photo/DSC02452.jpg",
-                    "assets/images/photo/DSC02453.jpg"
-                ]
-            },
             {
                 sectionTitle: '群馬旅行',
                 date: '2026.09',
@@ -345,6 +314,7 @@ const photoData = [
                     "assets/images/photo/DSC03730.jpg",
                     "assets/images/photo/DSC03733.jpg",
                     "assets/images/photo/DSC03743.jpg",
+                    "assets/images/photo/takamatsu-syoudoshima.jpg"
                     "assets/images/photo/DSC03748.jpg",
                     "assets/images/photo/DSC03750.jpg",
                     "assets/images/photo/DSC03788.jpg",
@@ -356,12 +326,52 @@ const photoData = [
                 sectionTitle: '北海道旅行',
                 date: '2026.08',
                 photos: [
-                    "assets/images/photo/DSC03070.jpg",
-                    "assets/images/photo/DSC03084.jpg",
-                    "assets/images/photo/DSC03116.jpg",
+                    "assets/images/photo/sapporo-televitou.jpg",
                     "assets/images/photo/DSC03127.jpg",
+                    "assets/images/photo/susukino-01.jpg",
+                    "assets/images/photo/DSC03116.jpg",
+                    "assets/images/photo/escon-01.jpg",
                     "assets/images/photo/DSC03208.jpg",
+                    "assets/images/photo/escon-02.jpg",
+                    "assets/images/photo/yuni-02.jpg",
+                    "assets/images/photo/yuni-03.jpg"
+                    "assets/images/photo/DSC03070.jpg",
+                    "assets/images/photo/DSC03084.jpg",                                                           
                     "assets/images/photo/DSC03225-2.jpg"
+                ]
+            },
+            {
+                sectionTitle: '茨城・千葉旅行',
+                date: '2026.06',
+                photos: [
+                    "assets/images/photo/DSC02418.jpg",
+                    "assets/images/photo/DSC02420.jpg",
+                    "assets/images/photo/DSC02422.jpg",
+                    "assets/images/photo/DSC02423.jpg",
+                    "assets/images/photo/DSC02434.jpg",
+                    "assets/images/photo/DSC02435.jpg",
+                    "assets/images/photo/DSC02440.jpg",
+                    "assets/images/photo/DSC02450.jpg",
+                    "assets/images/photo/DSC02452.jpg",
+                    "assets/images/photo/DSC02453.jpg"
+                ]
+            },
+            {
+                sectionTitle: '軽井沢旅行',
+                date: '2025.11',
+                photos: [
+                    "assets/images/photo/karuizawa.jpg"
+                ]
+            },
+            {
+                sectionTitle: '京都',
+                date: '2025.10',
+                photos: [
+                    "assets/images/photo/toji-kyoto.jpg",
+                    "assets/images/photo/DSC00718.jpg",
+                    "assets/images/photo/DSC00725.jpg",
+                    "assets/images/photo/DSC00727.jpg",
+                    "assets/images/photo/DSC00731.jpg"
                 ]
             },
             {
@@ -374,23 +384,6 @@ const photoData = [
                     "assets/images/photo/DSC00607.jpg",
                     "assets/images/photo/DSC00621.jpg",
                     "assets/images/photo/DSC00622.jpg"
-                ]
-            },
-            {
-                sectionTitle: '京都',
-                date: '2025.10',
-                photos: [
-                    "assets/images/photo/DSC00718.jpg",
-                    "assets/images/photo/DSC00725.jpg",
-                    "assets/images/photo/DSC00727.jpg",
-                    "assets/images/photo/DSC00731.jpg"
-                ]
-            },
-            {
-                sectionTitle: '軽井沢旅行',
-                date: '2025.11',
-                photos: [
-                    "assets/images/photo/karuizawa.jpg"
                 ]
             },
             {
@@ -452,20 +445,20 @@ const photoData = [
                     "assets/images/photo/yuni-01.jpg",
                     "assets/images/photo/yuni-04.jpg",
                     "assets/images/photo/yuni-05.jpg",
-                    "assets/images/photo/disneysea20260708-02.jpg",
-                    "assets/images/photo/disneysea20260708-03.jpg",
-                    "assets/images/photo/disneysea20260708-04.jpg",
-                    "assets/images/photo/disneysea20260708-05.jpg",
-                    "assets/images/photo/azisai-blue.jpg",
-                    "assets/images/photo/hanasyoubu.jpg",
-                    "assets/images/photo/DSC02475.jpg",
-                    "assets/images/photo/DSC02476.jpg",
                     "assets/images/photo/DSC03164.jpg",
                     "assets/images/photo/DSC03165.jpg",
                     "assets/images/photo/DSC03168.jpg",
                     "assets/images/photo/DSC03170.jpg",
                     "assets/images/photo/DSC03173.jpg",
                     "assets/images/photo/DSC03181.jpg",
+                    "assets/images/photo/disneysea20260708-02.jpg",
+                    "assets/images/photo/disneysea20260708-03.jpg",
+                    "assets/images/photo/disneysea20260708-04.jpg",
+                    "assets/images/photo/disneysea20260708-05.jpg",
+                    "assets/images/photo/azisai-blue.jpg",
+                    "assets/images/photo/DSC02475.jpg",
+                    "assets/images/photo/DSC02476.jpg",
+                    "assets/images/photo/hanasyoubu.jpg",         
                     "assets/images/photo/DSC03188.jpg",
                     "assets/images/photo/DSC03228.jpg"
                 ]
@@ -487,14 +480,21 @@ const photoData = [
                 date: '',
                 photos: [
                     "assets/images/photo/haneda-anapokemon.jpg",
-                    "assets/images/photo/haneda-delta.jpg",
                     "assets/images/photo/haneda-solaseed.jpg",
-                    "assets/images/photo/haneda-airdorokon.jpg",
                     "assets/images/photo/haneda-ana.jpg",
-                    "assets/images/photo/DSC01682.jpg",
-                    "assets/images/photo/DSC02991-2.jpg"
+                    "assets/images/photo/haneda-airdorokon.jpg",
+                    "assets/images/photo/haneda-delta.jpg",
+                    "assets/images/photo/DSC01682.jpg"
+                    
                 ]
             }
+            {
+                sectionTitle: 'その他',
+                date: '',
+                photos: [
+                    "assets/images/photo/DSC02991-2.jpg"
+                ]
+            },
         ]
     }
 ];
