@@ -51,8 +51,8 @@ const photoData = [
                     "assets/images/photo/ito-tatsuya.jpg",
                     "assets/images/photo/DSC01910.jpg",
                     "assets/images/photo/DSC01913.jpg",
-                    "assets/images/photo/DSC01925.jpg"
-                    "assets/images/photo/yamaguchi-rui.jpg",
+                    "assets/images/photo/DSC01925.jpg",
+                    "assets/images/photo/yamaguchi-rui.jpg"
                 ]
             }
         ]
@@ -249,8 +249,8 @@ const photoData = [
                     "assets/images/photo/DSC01970.jpg",
                     "assets/images/photo/DSC01988.jpg",
                     "assets/images/photo/DSC02013.jpg",
-                    "assets/images/photo/DSC02019.jpg"
-                    "assets/images/photo/sensoji.jpg",
+                    "assets/images/photo/DSC02019.jpg",
+                    "assets/images/photo/sensoji.jpg"
                 ]
             },
             {
@@ -262,7 +262,7 @@ const photoData = [
                     "assets/images/photo/DSC01240.jpg",
                     "assets/images/photo/DSC01263.jpg",
                     "assets/images/photo/hanabiyori-01.jpg",
-                    "assets/images/photo/hanabiyori-02.jpg",
+                    "assets/images/photo/hanabiyori-02.jpg"
                 ]
             },
             {
@@ -314,7 +314,7 @@ const photoData = [
                     "assets/images/photo/DSC03730.jpg",
                     "assets/images/photo/DSC03733.jpg",
                     "assets/images/photo/DSC03743.jpg",
-                    "assets/images/photo/takamatsu-syoudoshima.jpg"
+                    "assets/images/photo/takamatsu-syoudoshima.jpg",
                     "assets/images/photo/DSC03748.jpg",
                     "assets/images/photo/DSC03750.jpg",
                     "assets/images/photo/DSC03788.jpg",
@@ -334,7 +334,7 @@ const photoData = [
                     "assets/images/photo/DSC03208.jpg",
                     "assets/images/photo/escon-02.jpg",
                     "assets/images/photo/yuni-02.jpg",
-                    "assets/images/photo/yuni-03.jpg"
+                    "assets/images/photo/yuni-03.jpg",
                     "assets/images/photo/DSC03070.jpg",
                     "assets/images/photo/DSC03084.jpg",                                                           
                     "assets/images/photo/DSC03225-2.jpg"
@@ -485,16 +485,15 @@ const photoData = [
                     "assets/images/photo/haneda-airdorokon.jpg",
                     "assets/images/photo/haneda-delta.jpg",
                     "assets/images/photo/DSC01682.jpg"
-                    
                 ]
-            }
+            },
             {
                 sectionTitle: 'その他',
                 date: '',
                 photos: [
                     "assets/images/photo/DSC02991-2.jpg"
                 ]
-            },
+            }
         ]
     }
 ];
