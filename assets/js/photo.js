@@ -227,7 +227,6 @@ const photoData = [
                     "assets/images/photo/disneysea20260708-07.jpg",
                     "assets/images/photo/disneysea20260708-08.jpg",
                     "assets/images/photo/disneysea20260708-09.jpg",
-                    "assets/images/photo/DSC02938.jpg",
                     "assets/images/photo/DSC02957.jpg",
                     "assets/images/photo/DSC02968.jpg"
                 ]
@@ -238,7 +237,8 @@ const photoData = [
                 photos: [
                     "assets/images/photo/DSC01175.jpg",
                     "assets/images/photo/DSC01178.jpg",
-                    "assets/images/photo/DSC01181.jpg"
+                    "assets/images/photo/DSC01181.jpg",
+                    "assets/images/photo/sensoji.jpg"
                 ]
             },
             {
@@ -249,8 +249,7 @@ const photoData = [
                     "assets/images/photo/DSC01970.jpg",
                     "assets/images/photo/DSC01988.jpg",
                     "assets/images/photo/DSC02013.jpg",
-                    "assets/images/photo/DSC02019.jpg",
-                    "assets/images/photo/sensoji.jpg"
+                    "assets/images/photo/DSC02019.jpg"
                 ]
             },
             {
