@@ -114,7 +114,7 @@
 <body>
 
     <main class="album-page-container">
-        <!-- 戻るボタンをクリックしたときにフラグを保存する -->
+        <!-- 戻るボタンをクリックしたときに写真タブに戻るフラグを保存 -->
         <a href="index.html" class="back-btn" id="backBtn">&larr; 一覧に戻る</a>
         <h2 class="album-title-area" id="albumDetailTitle">読み込み中...</h2>
         <div id="albumSectionsContainer"></div>
@@ -129,12 +129,10 @@
     <!-- 写真データと専用スクリプト -->
     <script src="assets/js/photo.js"></script>
     <script>
-        // 戻るボタンが押されたら「写真タブで戻るフラグ」を立てる
         document.getElementById('backBtn').addEventListener('click', () => {
             sessionStorage.setItem('returnFromAlbum', 'true');
         });
 
-        // URLパラメータ（例: photo-album.html?id=kawasaki-ft）からIDを取得
         const urlParams = new URLSearchParams(window.location.search);
         const albumId = urlParams.get('id');
 
@@ -146,13 +144,8 @@
 
             if (targetAlbum && targetAlbum.sections) {
                 albumDetailTitle.textContent = targetAlbum.title;
-                
-                // 日付を新しい順に並び替え
-                const sortedSections = [...targetAlbum.sections].sort((a, b) => {
-                    return new Date(b.date.replace(/\./g, '/')) - new Date(a.date.replace(/\./g, '/'));
-                });
 
-                sortedSections.forEach(section => {
+                targetAlbum.sections.forEach(section => {
                     const sectionBlock = document.createElement('div');
                     sectionBlock.className = 'album-section-block';
 
@@ -169,10 +162,13 @@
                         photosHtml = '<p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">写真追加予定</p>';
                     }
 
+                    // 日付がある場合のみ日付要素を出力する
+                    let dateHtml = section.date ? `<span class="section-date">${section.date}</span>` : '';
+
                     sectionBlock.innerHTML = `
                         <div class="section-header">
                             <h3 class="section-title">${section.sectionTitle}</h3>
-                            <span class="section-date">${section.date}</span>
+                            ${dateHtml}
                         </div>
                         <div class="album-photos-grid">
                             ${photosHtml}
@@ -188,7 +184,6 @@
             albumDetailTitle.textContent = '不正なアクセスです。';
         }
 
-        // モーダル処理
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImg');
         const modalClose = document.querySelector('.modal-close');
