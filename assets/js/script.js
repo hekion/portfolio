@@ -1,7 +1,19 @@
+// URLパラメータを取得して初期状態を決定する
+const urlParams = new URLSearchParams(window.location.search);
+const initialFilter = urlParams.get('filter');
+
+let currentMainFilter = 'all';
+if (initialFilter) {
+    currentMainFilter = initialFilter;
+    // ページ読み込み時に最初から襖が開いた状態にする
+    document.body.classList.add('open');
+}
+
 // 1. スクロールに応じて白い襖が開くアニメーション
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    if (scrollY > 5) {
+    // パラメータで開いている場合、またはスクロールされている場合
+    if (scrollY > 5 || urlParams.has('filter')) {
         document.body.classList.add('open');
     } else {
         document.body.classList.remove('open');
@@ -20,7 +32,16 @@ const allWorks = [
 const galleryGrid = document.querySelector('.gallery-grid');
 const filterButtons = document.querySelectorAll('.filter-btn');
 
-let currentMainFilter = 'all';
+// 読み込み時にURLパラメータに合わせてボタンのactive状態を合わせる
+if (initialFilter) {
+    filterButtons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === initialFilter) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
 
 // ギャラリーを描画する関数
 function renderGallery() {
@@ -127,7 +148,6 @@ const modalClose = document.querySelector('.modal-close');
 function bindModalEvents() {
     const thumbnailWrappers = galleryGrid.querySelectorAll('.thumbnail-wrapper:not([data-album-id])');
     thumbnailWrappers.forEach(wrapper => {
-        // アルバム以外のサムネイルをクリックしたとき
         if (!wrapper.closest('a')) {
             wrapper.onclick = () => {
                 const img = wrapper.querySelector('img');
