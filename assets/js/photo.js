@@ -2,7 +2,7 @@ const photoData = [
     // ① 川崎フロンターレ撮影
     {
         id: 'kawasaki-ft',
-        title: '川崎フロンターレ 撮影記録',
+        title: '川崎フロンターレ',
         date: '2026.10.03',
         categoryName: '写真（スポーツ）',
         image: 'assets/images/photo/pedro-romano.jpg',
@@ -11,7 +11,9 @@ const photoData = [
             {
                 sectionTitle: 'vs U-21 東京ヴェルディ',
                 date: '2026.10.03',
-                photos: [] // 枠のみ（後から追加）
+                photos: [
+
+                ] // 枠のみ（後から追加）
             },
             {
                 sectionTitle: 'vs 京都サンガF.C.',
@@ -35,7 +37,7 @@ const photoData = [
     // ② その他スポーツ撮影
     {
         id: 'other-sports',
-        title: 'その他スポーツ撮影',
+        title: 'その他スポーツ',
         date: '2026.09.12',
         categoryName: '写真（スポーツ）',
         image: 'assets/images/photo/yamasaki-yasuaki.jpg',
@@ -70,14 +72,14 @@ const photoData = [
         sub: 'people',
         sections: [
             {
-                sectionTitle: 'イベント撮影',
+                sectionTitle: '川崎フロンターレ始球式',
                 date: '2026.08.15',
                 photos: [
                     "assets/images/photo/tomita-suzuka.jpg"
                 ]
             },
             {
-                sectionTitle: 'ポートレート撮影',
+                sectionTitle: 'ワールドカップ開幕直前イベント',
                 date: '2026.06.10',
                 photos: [
                     "assets/images/photo/kageyama-yuka.jpg",
@@ -85,7 +87,7 @@ const photoData = [
                 ]
             },
             {
-                sectionTitle: 'アイドル・イベント',
+                sectionTitle: '日向坂×DeNAコラボイベント',
                 date: '2026.05.28',
                 photos: [
                     "assets/images/photo/kamimura-hinano.jpg",
@@ -98,7 +100,7 @@ const photoData = [
     // ④ 動物
     {
         id: 'animals',
-        title: '動物の記録',
+        title: '動物',
         date: '2026.01.01',
         categoryName: '写真（その他）',
         image: 'assets/images/photo/kawauso.jpg',
@@ -106,7 +108,7 @@ const photoData = [
         sections: [
             {
                 sectionTitle: '動物たち',
-                date: '2026.01.01',
+                date: '',
                 photos: [
                     "assets/images/photo/kawauso.jpg"
                 ]
@@ -125,7 +127,7 @@ const photoData = [
         sections: [
             {
                 sectionTitle: 'シハチ鮮魚店',
-                date: '2026.01.01',
+                date: '',
                 photos: [
                     "assets/images/photo/shihachi-01.jpg",
                     "assets/images/photo/shihachi-02.jpg"
@@ -144,15 +146,15 @@ const photoData = [
         sub: 'landscape',
         sections: [
             {
-                sectionTitle: '2026.09 香川周辺',
-                date: '2026.09.01',
+                sectionTitle: '香川周辺',
+                date: '2026.09',
                 photos: [
                     "assets/images/photo/takamatsu-syoudoshima.jpg"
                 ]
             },
             {
-                sectionTitle: '2026.08 北海道',
-                date: '2026.08.01',
+                sectionTitle: '北海道',
+                date: '2026.08',
                 photos: [
                     "assets/images/photo/sapporo-televitou.jpg",
                     "assets/images/photo/susukino-01.jpg",
@@ -165,7 +167,7 @@ const photoData = [
             },
             {
                 sectionTitle: 'ディズニーシー',
-                date: '2026.07.08',
+                date: '',
                 photos: [
                     "assets/images/photo/disneysea20260708-01.jpg",
                     "assets/images/photo/disneysea20260708-06.jpg",
@@ -176,7 +178,7 @@ const photoData = [
             },
             {
                 sectionTitle: 'その他スポット',
-                date: '2026.01.01',
+                date: '',
                 photos: [
                     "assets/images/photo/sensoji.jpg",
                     "assets/images/photo/ginza-tokei.jpg",
@@ -202,14 +204,14 @@ const photoData = [
         sections: [
             {
                 sectionTitle: '軽井沢旅行',
-                date: '2026.01.03',
+                date: '2025.11',
                 photos: [
                     "assets/images/photo/karuizawa.jpg"
                 ]
             },
             {
                 sectionTitle: '群馬旅行',
-                date: '2026.01.02',
+                date: '2026.09',
                 photos: [
                     "assets/images/photo/yamba-01.jpg",
                     "assets/images/photo/yamba-02.jpg",
@@ -220,7 +222,7 @@ const photoData = [
             },
             {
                 sectionTitle: '伊豆旅行',
-                date: '2026.01.01',
+                date: '2025.03',
                 photos: [
                     "assets/images/photo/kawazu.jpg"
                 ]
@@ -267,8 +269,8 @@ const photoData = [
         sub: 'landscape',
         sections: [
             {
-                sectionTitle: '植物コレクション',
-                date: '2026.01.01',
+                sectionTitle: '植物',
+                date: '',
                 photos: [
                     "assets/images/photo/yuni-01.jpg",
                     "assets/images/photo/yuni-04.jpg",
@@ -287,7 +289,7 @@ const photoData = [
     // ⑩ その他
     {
         id: 'other-album',
-        title: 'その他・飛行機',
+        title: 'その他',
         date: '2026.01.01',
         categoryName: '写真（風景）',
         image: 'assets/images/photo/haneda-airdorokon.jpg',
